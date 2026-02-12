@@ -1,13 +1,31 @@
 {
-  "name": "cms-admin-dashboard",
+  "name": "admin-react-boilerplate",
+  "author": "Fathan Rohman <karir.fathan@gmail.com>",
+  "description": "Admin dashboard CMS template for Vite + React.js projects",
+  "keywords": [
+    "vite",
+    "react",
+    "boilerplate",
+    "starter",
+    "template",
+    "react-router"
+  ],
   "private": true,
-  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fathan/admin-react-boilerplate"
+  },
+  "license": "MIT",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commitlint": "commitlint --edit",
+    "commitizen": "exec < /dev/tty && git cz --hook || true",
+    "prepare": "husky"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
