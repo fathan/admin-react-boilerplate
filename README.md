@@ -1,3 +1,3 @@
 # React Admin CMS Template
 
-![screenshot](https://github.com/user-attachments/assets/eb982a68-0f3d-483c-92d8-c7e67acddd7c)
+![screenshot](https://raw.githubusercontent.com/fathan/admin-react-boilerplate/refs/heads/master/screenshot.png)
