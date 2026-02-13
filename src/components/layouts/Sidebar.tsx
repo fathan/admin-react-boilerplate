@@ -1,15 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, FileEdit, FolderOpen, Settings, Users, LogOut } from 'lucide-react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { LayoutDashboard, FileEdit, FolderOpen, Settings, Users, LogOut, Box } from 'lucide-react';
+import { useAuthStore } from '../../stores/authStore';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const logout = useAuthStore((state) => state.logout);
+
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: FileEdit, label: 'Pages', path: '/pages' },
     { icon: FolderOpen, label: 'Files', path: '/files' },
     { icon: Users, label: 'Users', path: '/users' },
     { icon: Settings, label: 'Settings', path: '/settings' },
+    { icon: Box, label: 'Documentation', path: '/documentations' },
   ];
+
+  const onClickHandleLogout = () => {
+    logout();
+    navigate('/auth/login');
+  }
 
   return (
     <div className="w-72 bg-white border-r border-gray-200 h-screen fixed left-0 top-0 flex flex-col">
@@ -35,8 +45,12 @@ const Sidebar = () => {
           </ul>
         </nav>
       </div>
+
       <div className="mt-auto p-6">
-        <button className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-200 transition-colors w-full">
+        <button
+          className="flex items-center text-gray-400 space-x-3 p-3 rounded-lg hover:bg-gray-200 transition-colors w-full"
+          onClick={ onClickHandleLogout }
+        >
           <LogOut className="w-5 h-5" />
           <span>Logout</span>
         </button>

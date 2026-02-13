@@ -8,6 +8,9 @@ import Settings from './pages/cms/Settings';
 import Users from './pages/cms/Users';
 import AuthLayout from './components/layouts/AuthLayout';
 import CmsLayout from './components/layouts/CmsLayout';
+import ProtectedRoute from './routes/ProtectedRoute';
+import GuestRoute from './routes/GuestRoute';
+import Documentation from './pages/cms/Documentation';
 
 function App() {
   return (
@@ -15,26 +18,33 @@ function App() {
       <Routes>
 
         {/* AUTH */}
-        <Route path="/auth" element={<AuthLayout />}>
-          <Route index element={<Navigate to="login" replace />} />
-          <Route index path="login" element={<Login />} />
+        <Route element={<GuestRoute />}>
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route index element={<Navigate to="login" replace />} />
+            <Route index path="login" element={<Login />} />
+          </Route>
         </Route>
 
         {/* CMS */}
-        <Route path="/" element={<CmsLayout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="" element={<Navigate to="/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="pages" element={<Pages />} />
-          <Route path="files" element={<FileManager />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<CmsLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="" element={<Navigate to="/dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="pages" element={<Pages />} />
+            <Route path="files" element={<FileManager />} />
 
-          {/* USERS CRUD */}
-          <Route path="users" element={<Users />} />
-          <Route path="users/create" element={<Users />} />
-          <Route path="users/:id" element={<Users />} />
-          <Route path="users/:id/edit" element={<Users />} />
+            {/* USERS CRUD */}
+            <Route path="users" element={<Users />} />
+            <Route path="users/create" element={<Users />} />
+            <Route path="users/:id" element={<Users />} />
+            <Route path="users/:id/edit" element={<Users />} />
 
-          <Route path="settings" element={<Settings />} />
+            <Route path="settings" element={<Settings />} />
+
+            {/* DOCUMENTATION */}
+            <Route path="documentations" element={<Documentation />} />
+          </Route>
         </Route>
 
       </Routes>

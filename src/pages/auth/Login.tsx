@@ -1,21 +1,40 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginRequest } from '../../services/auth.service';
+import { useAuthStore } from '../../stores/authStore';
 
 export default function Login() {
   const navigate = useNavigate();
+  const setAuth = useAuthStore((state) => state.setAuth);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('superadmin@gmail.com');
+  const [password, setPassword] = useState('superadmin');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password });
+    setLoading(true);
 
-    navigate('/');
+    try {
+      const response = await loginRequest({
+        email,
+        password,
+      });
+
+      setAuth(response.data.token, response.data.user);
+
+      navigate('/');
+    }
+    catch (error: any) {
+      alert(error?.response?.data?.message || 'Login failed');
+    }
+    finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8">
+    <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8">
       {/* Title */}
       <div className="mb-6 text-center">
         <h1 className="text-2xl font-bold text-gray-800">Login</h1>
@@ -75,12 +94,13 @@ export default function Login() {
         {/* Button */}
         <button
           type="submit"
+          disabled={loading}
           className="
             w-full bg-blue-600 text-white py-2 rounded-lg
             hover:bg-blue-700 transition font-semibold
           "
         >
-          Login
+          {loading ? 'Loading...' : 'Login'}
         </button>
       </form>
     </div>
