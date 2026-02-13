@@ -5,6 +5,9 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 5175
+  },
   plugins: [react(), tsconfigPaths()],
   optimizeDeps: {
     exclude: ['lucide-react'],

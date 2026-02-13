@@ -22,7 +22,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="w-72 bg-white border-r border-gray-200 h-screen fixed left-0 top-0 flex flex-col">
+    <div className="w-72 bg-white border-r border-gray-200 h-screen fixed left-0 top-0 flex flex-col dark:bg-[#0a0a09] dark:border-[#0a0a09]">
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-8">CMS Admin</h1>
         <nav>

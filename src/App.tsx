@@ -8,7 +8,7 @@ import Settings from './pages/cms/Settings';
 import Users from './pages/cms/Users';
 import AuthLayout from './components/layouts/AuthLayout';
 import CmsLayout from './components/layouts/CmsLayout';
-import ProtectedRoute from './routes/ProtectedRoute';
+// import ProtectedRoute from './routes/ProtectedRoute';
 import GuestRoute from './routes/GuestRoute';
 import Documentation from './pages/cms/Documentation';
 
@@ -26,7 +26,7 @@ function App() {
         </Route>
 
         {/* CMS */}
-        <Route element={<ProtectedRoute />}>
+        <Route element={<GuestRoute />}>
           <Route path="/" element={<CmsLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="" element={<Navigate to="/dashboard" replace />} />

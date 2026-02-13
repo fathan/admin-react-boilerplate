@@ -34,11 +34,11 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8">
+    <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 dark:bg-[#0a0a09] dark:border-[#0a0a09]">
       {/* Title */}
       <div className="mb-6 text-center">
-        <h1 className="text-2xl font-bold text-gray-800">Login</h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">Login</h1>
+        <p className="text-sm text-gray-500 mt-1 dark:text-gray-400">
           Masuk untuk melanjutkan
         </p>
       </div>
@@ -47,7 +47,7 @@ export default function Login() {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Email */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-white">
             Email
           </label>
           <input
@@ -66,7 +66,7 @@ export default function Login() {
 
         {/* Password */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-white">
             Password
           </label>
           <input
