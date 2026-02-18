@@ -2,6 +2,7 @@ import { Heading } from "@chakra-ui/react";
 import DocButton from "../../../components/fragments/Documentations/DocButton";
 import DocAlert from "../../../components/fragments/Documentations/DocAlert";
 import DocForm from "../../../components/fragments/Documentations/DocForm";
+import DocCustomForm from "../../../components/fragments/Documentations/DocCustomForm";
 
 const Documentation = () => {
   return (
@@ -19,9 +20,15 @@ const Documentation = () => {
       </section>
 
       <section className="mt-10">
-        <Heading size="2xl" className="mb-3">Form</Heading>
+        <Heading size="2xl" className="mb-3">Form Chakra UI</Heading>
         <hr className="mb-3" />
         <DocForm />
+      </section>
+
+      <section className="mt-10">
+        <Heading size="2xl" className="mb-3">Form Custom Component</Heading>
+        <hr className="mb-3" />
+        <DocCustomForm />
       </section>
     </div>
   );
