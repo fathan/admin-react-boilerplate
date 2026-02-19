@@ -20,7 +20,20 @@ export const formSchema = z.object({
     .nullable()
     .refine((v) => v !== null && v.label && v.value, {
       message: "Role wajib dipilih",
-    })
+    }),
+  birthdate: z.string().optional(),
+  user: z
+    .array(
+      z.object({
+        label: z.string(),
+        value: z.string(), // atau z.number() kalau value id numeric
+      })
+    )
+    .nullable()
+    .refine((v) => !v || v.length > 0, {
+      message: "User harus dipilih jika diisi",
+    }),
+
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

@@ -13,6 +13,8 @@ import { FormSwitchInput } from "../../../../../shared/atoms/form/FormSwitchInpu
 import { FormTextArea } from "../../../../../shared/atoms/form/FormTextarea";
 import { FormRadioGroup } from "../../../../../shared/atoms/form/FormRadioGroup";
 import { FormSelectInput } from "../../../../../shared/atoms/form/FormSelectInput";
+import { FormDatepicker } from "../../../../../shared/atoms/form/FormDatePicker";
+import { FormAsyncSelect } from "../../../../../shared/atoms/form/FormAsyncSelect";
 
 export default function CustomFormBasic() {
   /* ================= OPTIONS ================= */
@@ -44,6 +46,8 @@ export default function CustomFormBasic() {
     description: "",
     gender: "",
     role: null,
+    birthdate: "",
+    user: [],
   } as unknown as FormSchemaType;
 
   /* ================= FORM ================= */
@@ -145,6 +149,27 @@ export default function CustomFormBasic() {
             options={roleOptions}
             error={errors.role?.message}
           />
+
+          {/* DATE */}
+          <FormDatepicker
+            label="Birthdate"
+            name="birthdate"
+            error={errors.birthdate?.message}
+            registration={register("birthdate")}
+          />
+
+          {/* USER */}
+          <FormAsyncSelect
+            name="user"
+            control={control}
+            label="Pilih User"
+            loadOptionsUrl="https://jsonplaceholder.typicode.com/users"
+            multiple
+            labelField={(item) => `${item.name} (${item.email})`} // bisa gabung field
+            valueField="id" // pakai id sebagai value
+            placeholder="Cari user..."
+          />
+
 
           {/* SUBMIT */}
           <Button
