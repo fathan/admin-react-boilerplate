@@ -13,8 +13,10 @@ import { FormSwitchInput } from "../../../../../shared/atoms/form/FormSwitchInpu
 import { FormTextArea } from "../../../../../shared/atoms/form/FormTextarea";
 import { FormRadioGroup } from "../../../../../shared/atoms/form/FormRadioGroup";
 import { FormSelectInput } from "../../../../../shared/atoms/form/FormSelectInput";
-import { FormDatepicker } from "../../../../../shared/atoms/form/FormDatePicker";
+import { FormDatePicker } from "../../../../../shared/atoms/form/FormDatePicker";
 import { FormAsyncSelect } from "../../../../../shared/atoms/form/FormAsyncSelect";
+import { FormFileUpload } from "../../../../../shared/atoms/form/FormFileUpload";
+import { FormNumberInput } from "../../../../../shared/atoms/form/FormNumberInput";
 
 export default function CustomFormBasic() {
   /* ================= OPTIONS ================= */
@@ -48,6 +50,7 @@ export default function CustomFormBasic() {
     role: null,
     birthdate: "",
     user: [],
+    age: 17
   } as unknown as FormSchemaType;
 
   /* ================= FORM ================= */
@@ -66,8 +69,6 @@ export default function CustomFormBasic() {
 
   const onSubmit = async (data: FormSchemaType) => {
     console.log("DATA:", data);
-    await new Promise((r) => setTimeout(r, 1000));
-    alert("Form Success");
   };
 
   /* ================= UI ================= */
@@ -150,12 +151,16 @@ export default function CustomFormBasic() {
             error={errors.role?.message}
           />
 
-          {/* DATE */}
-          <FormDatepicker
-            label="Birthdate"
+          {/* DATEPICKER */}
+          <FormDatePicker
             name="birthdate"
+            control={control}
+            label="Tanggal Lahir"
+            helperText="Pilih tanggal lahir Anda"
             error={errors.birthdate?.message}
-            registration={register("birthdate")}
+            minDate={new Date(1900, 0, 1)}
+            maxDate={new Date()}
+            dateFormat="dd/MM/yyyy"
           />
 
           {/* USER */}
@@ -168,6 +173,26 @@ export default function CustomFormBasic() {
             labelField={(item) => `${item.name} (${item.email})`} // bisa gabung field
             valueField="id" // pakai id sebagai value
             placeholder="Cari user..."
+            error={errors.user?.message}
+          />
+
+          {/* NUMBER */}
+          <FormNumberInput
+            label="Age"
+            name="age"
+            error={errors.age?.message}
+            registration={register("age")}
+          />
+
+          <FormFileUpload
+            name="avatar"
+            control={control}
+            label="Upload Dokumen"
+            isRequired
+            multiple
+            accept="image/*,application/pdf"
+            helperText="Maks. 3 file — JPG, PNG atau PDF"
+            error={errors.avatar?.message}
           />
 
 

@@ -1,62 +1,66 @@
-import {
-  Field,
-  Input,
-  InputProps,
-  Text
-} from "@chakra-ui/react";
-import { UseFormRegisterReturn } from "react-hook-form";
-import { ReactNode } from "react";
+import React from "react";
+import { Controller, Control } from "react-hook-form";
+import { Text, Field } from "@chakra-ui/react";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-type FormDatepickerProps = InputProps & {
-  label?: string;
+interface FormDatePickerProps {
   name: string;
+  control: Control<any>;
+  label?: string;
   error?: string;
-  helperText?: ReactNode;
-  isRequired?: boolean;
-  registration?: UseFormRegisterReturn;
-  type?: string;
-};
+  helperText?: string;
+  placeholder?: string;
+  minDate?: Date;
+  maxDate?: Date;
+  disabled?: boolean;
+  dateFormat?: string; // default "dd/MM/yyyy"
+}
 
-export function FormDatepicker({
-  label,
+export const FormDatePicker: React.FC<FormDatePickerProps> = ({
   name,
+  control,
+  label,
   error,
   helperText,
-  isRequired = false,
-  registration,
-  type = "text",
-  ...inputProps
-}: FormDatepickerProps) {
+  placeholder = "Pilih tanggal",
+  minDate,
+  maxDate,
+  disabled = false,
+  dateFormat = "dd/MM/yyyy",
+}) => {
   return (
-    <>
-      <Field.Root invalid={!!error}>
-        {label && (
-          <Field.Label htmlFor={name}>
-            {label}
-            {isRequired && (
-              <Text as="span" color="red.500">
-                *
-              </Text>
-            )}
-          </Field.Label>
+    <Field.Root invalid={!!error}>
+      {label && (
+        <Text fontWeight="medium" mb={1}>
+          {label}
+        </Text>
+      )}
+
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <ReactDatePicker
+            selected={field.value ? new Date(field.value) : null}
+            onChange={(date: Date | null) => field.onChange(date)}
+            placeholderText={placeholder}
+            dateFormat={dateFormat}
+            minDate={minDate}
+            maxDate={maxDate}
+            disabled={disabled}
+            className="chakra-input" // bisa di-style pakai chakra-input css
+          />
         )}
+      />
 
-        <Input
-          id={name}
-          name={name}
-          type={type}
-          {...registration}
-          {...inputProps}
-        />
-
-        {error ? (
-          <Text color="red.500" fontSize="sm">
-            {error}
-          </Text>
-        ) : helperText ? (
-          <Field.HelperText>{helperText}</Field.HelperText>
-        ) : null}
-      </Field.Root>
-    </>
+      {error ? (
+        <Text color="red.500" fontSize="sm" mt={1}>
+          {error}
+        </Text>
+      ) : helperText ? (
+        <Field.HelperText mt={1}>{helperText}</Field.HelperText>
+      ) : null}
+    </Field.Root>
   );
-}
+};

@@ -154,7 +154,7 @@ export const FormAsyncSelect: React.FC<FormAsyncSelectProps> = ({
       <Controller
         name={name}
         control={control}
-        render={({ field, fieldState }) => (
+        render={({ field }) => (
           <>
             <AsyncSelect
               {...field}
@@ -169,11 +169,6 @@ export const FormAsyncSelect: React.FC<FormAsyncSelectProps> = ({
               components={{ MenuList }}
               classNamePrefix="chakra-async-select"
             />
-            {fieldState.error && (
-              <Text mt={1} fontSize="xs" color="red.500">
-                {fieldState.error.message}
-              </Text>
-            )}
           </>
         )}
       />

@@ -21,19 +21,25 @@ export const formSchema = z.object({
     .refine((v) => v !== null && v.label && v.value, {
       message: "Role wajib dipilih",
     }),
-  birthdate: z.string().optional(),
+  birthdate: z.date().refine(date => date <= new Date(), {
+    message: "Tanggal lahir tidak boleh di masa depan",
+  }),
   user: z
     .array(
       z.object({
         label: z.string(),
-        value: z.string(), // atau z.number() kalau value id numeric
+        value: z.union([z.string(), z.number()]), // <-- allow string atau number
       })
     )
     .nullable()
     .refine((v) => !v || v.length > 0, {
       message: "User harus dipilih jika diisi",
     }),
-
+  age: z.number().min(0, "Umur tidak boleh negatif").max(120, "Umur tidak boleh lebih dari 120").optional(),
+  avatar: z
+    .array(z.instanceof(File))
+    .nonempty({ message: "Avatar wajib diupload" })
+    .optional(),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
