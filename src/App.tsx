@@ -43,7 +43,12 @@ function App() {
             <Route path="settings" element={<Settings />} />
 
             {/* DOCUMENTATION */}
-            <Route path="documentations" element={<Documentation />} />
+            <Route path="documentations" element={<Documentation />}>
+              <Route path="alert" element={<Documentation />} />
+              <Route path="button" element={<Documentation />} />
+              <Route path="form" element={<Documentation />} />
+              <Route path="form-custom" element={<Documentation />} />
+            </Route>
           </Route>
         </Route>
 
