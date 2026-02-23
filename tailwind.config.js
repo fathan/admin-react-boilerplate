@@ -1,15 +1,110 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/react-tailwindcss-datepicker/dist/index.esm.{js,ts}'
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          50:  "#fef9f4",
+          100: "#fceee1",
+          200: "#f9dfc4",
+          300: "#f6cfa7",
+          400: "#f2b987",
+          500: "#ef9f64",
+          600: "#e98045",
+          700: "#d96532",
+          800: "#b74f27",
+          900: "#8c391d",
+        },
+
+        accent: {
+          50:  "#f5f8ff",
+          100: "#e3ecff",
+          200: "#c8d4ff",
+          300: "#a9b8ff",
+          400: "#8a9dff",
+          500: "#6b82ff",
+          600: "#556ce6",
+          700: "#4354b3",
+          800: "#323b80",
+          900: "#1f2460",
+        },
+
+        success: {
+          50:  "#f3fdf2",
+          100: "#e6fbde",
+          200: "#c8f7b7",
+          300: "#aaf38f",
+          400: "#8dea66",
+          500: "#6bd53b",
+          600: "#57b72f",
+          700: "#419621",
+          800: "#2f7017",
+          900: "#1c4a0d",
+        },
+
+        warning: {
+          50:  "#fffaf0",
+          100: "#fff1d9",
+          200: "#ffe4af",
+          300: "#ffd88b",
+          400: "#ffc960",
+          500: "#ffb635",
+          600: "#e69e2d",
+          700: "#b37821",
+          800: "#805619",
+          900: "#553813",
+        },
+
+        error: {
+          50:  "#fff2f2",
+          100: "#ffe0e0",
+          200: "#ffc1c1",
+          300: "#ff9e9e",
+          400: "#ff7878",
+          500: "#ff5252",
+          600: "#e64242",
+          700: "#b73535",
+          800: "#822929",
+          900: "#591d1d",
+        },
+
+        neutral: {
+          50:  "#fafafa",
+          100: "#f4f4f5",
+          200: "#e4e4e7",
+          300: "#d4d4d8",
+          400: "#a1a1aa",
+          500: "#71717a",
+          600: "#52525b",
+          700: "#3f3f46",
+          800: "#27272a",
+          900: "#18181b",
+        },
+
+        'digital-blue': {
+          50:  "#E5F0FF",
+          100: "#CCE0FF",
+          200: "#99C2FF",
+          300: "#66A3FF",
+          400: "#3385FF",
+          500: "#0066FF",
+          600: "#0052CC",
+          700: "#003D99",
+          800: "#002966",
+          900: "#001433",
+          950: "#000E24",
+        },
+      },
+    },
   },
   plugins: [],
   corePlugins: {
     preflight: false,
-  }
+  },
 };

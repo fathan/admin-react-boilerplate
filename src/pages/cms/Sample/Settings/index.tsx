@@ -5,8 +5,8 @@ const Settings = () => {
     <div>
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-          <p className="text-gray-600 mt-1">Manage your website settings</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Settings</h1>
+          <p className="text-gray-600 mt-1 dark:text-white">Manage your website settings</p>
         </div>
         <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
           <Save className="w-4 h-4" />
@@ -14,7 +14,7 @@ const Settings = () => {
         </button>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-white dark:bg-[#0a0a09] border border-gray-200 dark:border-[#0a0a09] rounded-lg p-6">
         <div className="space-y-6">
           <div>
             <h2 className="text-lg font-semibold mb-4">General Settings</h2>

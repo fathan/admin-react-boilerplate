@@ -1,4 +1,4 @@
-import FileList from "../../../components/fragments/FileManager/FileList";
+import FileList from "../../../../components/fragments/FileManager/FileList";
 
 const FileManager = () => {
   return (

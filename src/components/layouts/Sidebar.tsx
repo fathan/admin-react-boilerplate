@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FileEdit, FolderOpen, Settings, Users, LogOut, Box } from 'lucide-react';
+import { LayoutDashboard, LogOut, User } from 'lucide-react';
 import { useAuthStore } from '../../stores/authStore';
 
 const Sidebar = () => {
@@ -9,11 +9,7 @@ const Sidebar = () => {
 
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-    { icon: FileEdit, label: 'Pages', path: '/pages' },
-    { icon: FolderOpen, label: 'Files', path: '/files' },
-    { icon: Users, label: 'Users', path: '/users' },
-    { icon: Settings, label: 'Settings', path: '/settings' },
-    { icon: Box, label: 'Documentation', path: '/documentations' },
+    { icon: User, label: 'Users', path: '/users' }
   ];
 
   const onClickHandleLogout = () => {
@@ -22,9 +18,11 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="w-72 bg-white border-r border-gray-200 h-screen fixed left-0 top-0 flex flex-col dark:bg-[#0a0a09] dark:border-[#0a0a09]">
+    <div className="w-72 border-r border-gray-200 h-screen fixed left-0 top-0 flex flex-col bg-white dark:bg-[#0a0a09] dark:border-[#0a0a09]">
       <div className="p-6">
-        <h1 className="text-2xl font-bold mb-8">CMS Admin</h1>
+        <h1 className="text-2xl font-bold mb-8 text-gray-500 dark:text-white">
+          CMS Admin
+        </h1>
         <nav>
           <ul className="space-y-2">
             {navItems.map(({ icon: Icon, label, path }) => (
@@ -33,7 +31,7 @@ const Sidebar = () => {
                   to={path}
                   className={({ isActive }) =>
                     `flex items-center space-x-5 p-3 rounded-full transition-colors ${
-                      isActive ? 'text-blue-600 bg-blue-100' : 'text-gray-400 hover:bg-gray-200'
+                      isActive ? 'text-digital-blue-500 bg-digital-blue-100' : 'text-gray-400 hover:bg-gray-200'
                     }`
                   }
                 >

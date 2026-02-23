@@ -6,10 +6,6 @@ import GuestRoute from "../routes/GuestRoute";
 
 import Login from "../pages/auth/Login";
 import Dashboard from "../pages/cms/Dashboard";
-import Pages from "../pages/cms/Pages";
-import FileManager from "../pages/cms/FileManager";
-import Settings from "../pages/cms/Settings";
-import Users from "../pages/cms/Users";
 
 import Documentation from "../pages/cms/Documentation";
 import DocButton from "../pages/cms/Documentation/components/Button";
@@ -36,6 +32,15 @@ import DocMessagesToasts from "../pages/cms/Documentation/components/Messages/co
 import DocTable from "../pages/cms/Documentation/components/Table";
 import DocTableBasic from "../pages/cms/Documentation/components/Table/components/Basic";
 import DocTableDatatable from "../pages/cms/Documentation/components/Table/components/Datatable";
+import CmsUsersList from "../pages/cms/Users/List";
+import CmsUsersCreate from "../pages/cms/Users/Create";
+import CmsUsersDetail from "../pages/cms/Users/Detail";
+import CmsUsersUpdate from "../pages/cms/Users/Update";
+import CmsUsers from "../pages/cms/Users";
+
+import Pages from "../pages/cms/Sample/Pages";
+import FileManager from "../pages/cms/Sample/FileManager";
+import Settings from "../pages/cms/Sample/Settings";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -74,34 +79,31 @@ export const router = createBrowserRouter([
             path: "dashboard",
             element: <Dashboard />,
           },
-          {
-            path: "pages",
-            element: <Pages />
-          },
-          {
-            path: "files",
-            element: <FileManager />
-          },
           // USERS
           {
             path: "users",
-            element: <Users />
-          },
-          {
-            path: "users/create",
-            element: <Users />
-          },
-          {
-            path: "users/:id",
-            element: <Users />
-          },
-          {
-            path: "users/:id/edit",
-            element: <Users />
-          },
-          {
-            path: "settings",
-            element: <Settings />
+            element: <CmsUsers />,
+            children: [
+              { index: true,
+                element: <Navigate to="list" replace />
+              },
+              {
+                path: "list",
+                element: <CmsUsersList />
+              },
+              {
+                path: "create",
+                element: <CmsUsersCreate />
+              },
+              {
+                path: "detail/:id",
+                element: <CmsUsersDetail />
+              },
+              {
+                path: "update/:id",
+                element: <CmsUsersUpdate />
+              },
+            ]
           },
           // DOCUMENTATION
           {
@@ -109,7 +111,7 @@ export const router = createBrowserRouter([
             element: <Documentation />,
             children: [
               { index: true,
-                element: <Navigate to="alert" replace />
+                element: <Navigate to="button" replace />
               },
               {
                 path: "button",
@@ -233,7 +235,20 @@ export const router = createBrowserRouter([
                 ]
               }
             ]
-          }
+          },
+          // SAMPLE PAGES
+          {
+            path: "pages",
+            element: <Pages />
+          },
+          {
+            path: "files",
+            element: <FileManager />
+          },
+          {
+            path: "settings",
+            element: <Settings />
+          },
         ]
       }
     ]
