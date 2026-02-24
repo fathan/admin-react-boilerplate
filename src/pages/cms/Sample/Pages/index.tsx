@@ -1,6 +1,6 @@
 import React from 'react';
 import PageList from '../../../../components/fragments/Pages/PageList';
-import Editor from '../../../../components/shared/organisms/Editor';
+import AppEditor from '../../../../components/shared/organisms/AppEditor';
 
 const Pages = () => {
   const [isEditing, setIsEditing] = React.useState(false);
@@ -20,7 +20,7 @@ const Pages = () => {
         </button>
       </div>
 
-      {isEditing ? <Editor /> : <PageList />}
+      {isEditing ? <AppEditor /> : <PageList />}
     </div>
   );
 };

@@ -31,7 +31,7 @@ const defaultInitialValue: Descendant[] = [
   },
 ];
 
-const Editor = () => {
+const AppEditor = () => {
   const editor = useMemo(() => withReact(createEditor()), []);
   const [value, setValue] = useState<Descendant[]>(() => {
     const savedContent = localStorage.getItem('content');
@@ -155,4 +155,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default AppEditor;
