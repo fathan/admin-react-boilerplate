@@ -41,13 +41,13 @@ export default function DocPanelTabs() {
       />
 
       <AppTabs
-        defaultValue="members"
+        defaultValue="tasks"
         variant="subtle"
         tabs={tabs}
       />
 
       <AppTabs
-        defaultValue="members"
+        defaultValue="projects"
         variant="enclosed"
         tabs={tabs}
       />
@@ -59,7 +59,7 @@ export default function DocPanelTabs() {
       />
 
       <AppTabs
-        defaultValue="members"
+        defaultValue="tasks"
         variant="plain"
         tabs={tabs}
       />
