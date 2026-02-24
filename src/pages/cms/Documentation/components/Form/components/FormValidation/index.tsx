@@ -5,16 +5,16 @@ import { useMemo } from "react";
 
 import { formSchema, FormSchemaType } from "./formSchema";
 
-import { BaseTextInput } from "../../../../../../../components/shared/atoms/BaseTextInput";
-import { BaseCheckbox } from "../../../../../../../components/shared/atoms/BaseCheckbox";
-import { BaseSwitchInput } from "../../../../../../../components/shared/atoms/BaseSwitchInput";
-import { BaseTextArea } from "../../../../../../../components/shared/atoms/BaseTextarea";
-import { BaseRadioGroup } from "../../../../../../../components/shared/atoms/BaseRadioGroup";
-import { BaseSelectInput } from "../../../../../../../components/shared/atoms/BaseSelectInput";
-import { BaseDatePicker } from "../../../../../../../components/shared/atoms/BaseDatePicker";
-import { BaseAsyncSelect } from "../../../../../../../components/shared/atoms/BaseAsyncSelect";
-import { BaseFileUpload } from "../../../../../../../components/shared/atoms/BaseFileUpload";
-import { BaseNumberInput } from "../../../../../../../components/shared/atoms/BaseNumberInput";
+import { BaseTextInput } from "@/components/shared/atoms/BaseTextInput";
+import { BaseCheckbox } from "@/components/shared/atoms/BaseCheckbox";
+import { BaseSwitchInput } from "@/components/shared/atoms/BaseSwitchInput";
+import { BaseTextArea } from "@/components/shared/atoms/BaseTextarea";
+import { BaseRadioGroup } from "@/components/shared/atoms/BaseRadioGroup";
+import { BaseSelectInput } from "@/components/shared/atoms/BaseSelectInput";
+import { BaseDatePicker } from "@/components/shared/atoms/BaseDatePicker";
+import { BaseAsyncSelect } from "@/components/shared/atoms/BaseAsyncSelect";
+import { BaseFileUpload } from "@/components/shared/atoms/BaseFileUpload";
+import { BaseNumberInput } from "@/components/shared/atoms/BaseNumberInput";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */

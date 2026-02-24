@@ -1,4 +1,6 @@
-import { Card, Alert } from "@chakra-ui/react";
+import BaseAlert from "@/components/shared/atoms/BaseAlert";
+import { Card } from "@chakra-ui/react";
+import { Users } from "lucide-react";
 
 const DocMessagesAlert = () => {
   return (
@@ -11,29 +13,121 @@ const DocMessagesAlert = () => {
         </Card.Header>
         <Card.Body>
           <div className="flex flex-col gap-4">
-            <Alert.Root status="error">
-              <Alert.Indicator />
-              <Alert.Title>There was an error processing your request</Alert.Title>
-            </Alert.Root>
+            <BaseAlert
+              title="Info"
+              description="Information"
+              status="info"
+              variant="solid"
+              colorPalette="green"
+              showIcon
+              closable
+              onClose={() => console.log("Closed")}
+            />
 
-            <Alert.Root status="info">
-              <Alert.Indicator />
-              <Alert.Title>
-                Chakra is going live on August 30th. Get ready!
-              </Alert.Title>
-            </Alert.Root>
+            <BaseAlert
+              title="Success!"
+              description="Data berhasil disimpan."
+              status="success"
+              variant="solid"
+              colorPalette="green"
+              size="md"
+              closable
+              onClose={() => console.log("Closed")}
+            />
 
-            <Alert.Root status="warning">
-              <Alert.Indicator />
-              <Alert.Title>
-                Seems your account is about expire, upgrade now
-              </Alert.Title>
-            </Alert.Root>
+            <BaseAlert
+              title="Warning!"
+              description="Periksa input anda."
+              status="warning"
+              variant="solid"
+              colorPalette="green"
+              size="md"
+              closable
+              onClose={() => console.log("Closed")}
+            />
 
-            <Alert.Root status="success">
-              <Alert.Indicator />
-              <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>
-            </Alert.Root>
+            <BaseAlert
+              title="Failed"
+              description="Data gagal disimpan."
+              status="error"
+              variant="solid"
+              colorPalette="green"
+              showIcon
+              closable
+              onClose={() => console.log("Closed")}
+            />
+
+            <BaseAlert
+              title="Warning!"
+              description="Periksa input anda."
+              status="warning"
+              variant="outline"
+              colorPalette="orange"
+              showIcon
+              closable
+              onClose={() => console.log("Closed")}
+            />
+
+            <BaseAlert
+              title="Success"
+              description="Data berhasil disimpan."
+              status="success"
+              variant="outline"
+              colorPalette="orange"
+              showIcon
+              closable
+              onClose={() => console.log("Closed")}
+            />
+
+            <BaseAlert
+              title="Info"
+              description="Information"
+              status="info"
+              variant="outline"
+              colorPalette="orange"
+              showIcon
+            />
+
+            <BaseAlert
+              title="Failed"
+              description="Data gagal disimpan."
+              status="error"
+              variant="outline"
+              colorPalette="orange"
+              showIcon
+            />
+
+            <BaseAlert
+              title="Info"
+              description="Ini alert info dengan custom icon"
+              status="info"
+              icon={<Users />}
+              variant="subtle"
+            />
+
+            <BaseAlert
+              title="Info"
+              description="Ini alert info dengan custom icon"
+              status="success"
+              icon={<Users />}
+              variant="subtle"
+            />
+
+            <BaseAlert
+              title="Info"
+              description="Ini alert info dengan custom icon"
+              status="error"
+              icon={<Users />}
+              variant="subtle"
+            />
+
+            <BaseAlert
+              title="Info"
+              description="Ini alert info dengan custom icon"
+              status="warning"
+              icon={<Users />}
+              variant="subtle"
+            />
           </div>
         </Card.Body>
       </Card.Root>

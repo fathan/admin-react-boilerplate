@@ -16,7 +16,6 @@ import DocMiscAvatar from "../pages/cms/Documentation/components/Misc/components
 import DocMiscBadge from "../pages/cms/Documentation/components/Misc/components/Badge";
 import DocMisc from "../pages/cms/Documentation/components/Misc";
 import DocMiscChip from "../pages/cms/Documentation/components/Misc/components/Chip";
-import DocMiscCopyText from "../pages/cms/Documentation/components/Misc/components/CopyText";
 import DocMiscEmptyData from "../pages/cms/Documentation/components/Misc/components/EmptyData";
 import DocMiscLink from "../pages/cms/Documentation/components/Misc/components/Link";
 import DocMiscProgressBar from "../pages/cms/Documentation/components/Misc/components/ProgressBar";
@@ -41,6 +40,8 @@ import CmsUsers from "../pages/cms/Users";
 import Pages from "../pages/cms/Sample/Pages";
 import FileManager from "../pages/cms/Sample/FileManager";
 import Settings from "../pages/cms/Sample/Settings";
+import PageNotFound from "../components/layouts/PageNotFound";
+import DocMiscClipboard from "../pages/cms/Documentation/components/Misc/components/Clipboard";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -188,8 +189,8 @@ export const router = createBrowserRouter([
                     element: <DocMiscChip />
                   },
                   {
-                    path: "copy-text",
-                    element: <DocMiscCopyText />
+                    path: "clipboard",
+                    element: <DocMiscClipboard />
                   },
                   {
                     path: "empty-data",
@@ -252,5 +253,9 @@ export const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path: "*",
+    element: <PageNotFound />
   }
 ]);

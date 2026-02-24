@@ -1,8 +1,8 @@
 import React from "react"
 
 import { useAccordionContext } from "./AppAccordion"
-import UIAccordionHeader from "../../molecules/UIAccordionHeader"
-import UIAccordionContent from "../../molecules/UIAccordionContent"
+import UIAccordionHeader from "@/components/shared/molecules/UIAccordionHeader"
+import UIAccordionContent from "@/components/shared/molecules/UIAccordionContent"
 
 type AppAccordionItemProps = {
   value: string

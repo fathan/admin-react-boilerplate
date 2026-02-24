@@ -1,6 +1,6 @@
 import React from 'react';
-import PageList from '../../../../components/fragments/Pages/PageList';
-import AppEditor from '../../../../components/shared/organisms/AppEditor';
+import PageList from '@/components/fragments/Pages/PageList';
+import AppEditor from '@/components/shared/organisms/AppEditor';
 
 const Pages = () => {
   const [isEditing, setIsEditing] = React.useState(false);

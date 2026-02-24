@@ -1,4 +1,4 @@
-import AppAccordion from "./../../../../../../../components/shared/organisms/AppAccordion"
+import AppAccordion from "@/components/shared/organisms/AppAccordion"
 
 export default function DocPanelAccordion() {
   return (

@@ -1,4 +1,5 @@
-import BaseIcon from "../../atoms/BaseIcon"
+import { ChevronUp } from "lucide-react"
+import BaseIcon from "@/components/shared/atoms/BaseIcon"
 
 type UIAccordionHeaderProps = {
   children: React.ReactNode
@@ -17,7 +18,11 @@ const UIAccordionHeader = ({
       onClick={onClick}
     >
       <div>{children}</div>
-      <BaseIcon open={isOpen} />
+      {isOpen ? (
+        <BaseIcon icon={ChevronUp} className="w-4 h-4 transition-transform" />
+      ) : (
+        <BaseIcon icon={ChevronUp} className="w-4 h-4 transition-transform rotate-180" />
+      )}
     </div>
   )
 }

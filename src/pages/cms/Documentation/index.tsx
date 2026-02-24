@@ -77,12 +77,8 @@ export default function Documentation() {
           path: "misc/badge",
         },
         {
-          label: "Chip",
-          path: "misc/chip",
-        },
-        {
-          label: "Copy Text",
-          path: "misc/copy-text",
+          label: "Clipboard",
+          path: "misc/clipboard",
         },
         {
           label: "Empty Data",
@@ -93,12 +89,12 @@ export default function Documentation() {
           path: "misc/link",
         },
         {
-          label: "Progress Bar",
-          path: "misc/progress-bar",
-        },
-        {
           label: "Tag",
           path: "misc/tag",
+        },
+        {
+          label: "Progress Bar",
+          path: "misc/progress-bar",
         },
       ],
     },
