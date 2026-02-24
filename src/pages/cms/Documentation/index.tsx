@@ -16,12 +16,18 @@ interface Node {
 
 const menus: MenuItem[] = [
   {
-    label: "Alert",
-    path: "alert",
-  },
-  {
     label: "Button",
     path: "button",
+    children: [
+      {
+        label: "Basic",
+        path: "button/basic",
+      },
+      {
+        label: "Action Button",
+        path: "button/action-button",
+      },
+    ],
   },
   {
     label: "Forms",
@@ -151,12 +157,12 @@ export default function Documentation() {
 
   return (
     <div className="flex">
-      <aside className="w-1/5 p-4 border-r fixed h-screen overflow-y-auto">
+      <aside className="w-1/5 pr-4 border-r fixed h-screen overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Documentation</h2>
 
         <TreeView.Root
           collection={menuCollection}
-          defaultExpandedValue={["form", "messages", "table", "misc", "panel"]}
+          defaultExpandedValue={["button", "form", "messages", "table", "misc", "panel"]}
         >
           <TreeView.Tree>
             <TreeView.Node<Node>
@@ -200,7 +206,7 @@ export default function Documentation() {
         </TreeView.Root>
       </aside>
 
-      <main className="w-full p-4 pl-[26%]">
+      <main className="w-full pl-[26%]">
         <Outlet />
       </main>
     </div>

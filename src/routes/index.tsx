@@ -43,6 +43,8 @@ import Settings from "../pages/cms/Sample/Settings";
 import PageNotFound from "../components/layouts/PageNotFound";
 import DocMiscClipboard from "../pages/cms/Documentation/components/Misc/components/Clipboard";
 import DocMiscImages from "@/pages/cms/Documentation/components/Misc/components/Images";
+import DocButtonActionButton from "@/pages/cms/Documentation/components/Button/components/ActionButton";
+import DocButtonBasic from "@/pages/cms/Documentation/components/Button/components/Basic";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -117,7 +119,20 @@ export const router = createBrowserRouter([
               },
               {
                 path: "button",
-                element: <DocButton />
+                element: <DocButton />,
+                children: [
+                  { index: true,
+                    element: <Navigate to="basic" replace />
+                  },
+                  {
+                    path: "basic",
+                    element: <DocButtonBasic />
+                  },
+                  {
+                    path: "action-button",
+                    element: <DocButtonActionButton />
+                  }
+                ]
               },
               {
                 path: "form",

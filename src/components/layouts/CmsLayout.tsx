@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom"
 import Sidebar from "./Sidebar"
 import {
-  Box,
   Flex,
   Switch,
   Text,
@@ -22,23 +21,10 @@ export default function CmsLayout() {
 
       <div className="flex-1 ml-72">
         {/* Header */}
-        <Box
-          position="fixed"
-          top="0"
-          left="18rem"
-          right="0"
-          height="64px"
-          bg="white"
-          _dark={{ bg: "#1a1814" }}
-          borderBottomWidth="1px"
-          zIndex="50"
+        <div
+          className="fixed py-3 top-0 left-[18rem] right-0 h-16 bg-white dark:bg-[#1a1814] rounded-2xl border border-gray-200 dark:border-gray-600 m-8 mt-6 z-50"
         >
-          <Flex
-            h="100%"
-            px="6"
-            align="center"
-            justify="space-between"
-          >
+          <div className="flex justify-between items-center px-6">
             <Text fontWeight="bold">CMS Dashboard</Text>
 
             <Flex align="center" gap="4">
@@ -86,11 +72,11 @@ export default function CmsLayout() {
                 </Menu.Positioner>
               </Menu.Root>
             </Flex>
-          </Flex>
-        </Box>
+          </div>
+        </div>
 
         {/* Main Content */}
-        <main className="pt-20 p-8">
+        <main className="pt-32 p-8">
           <Outlet />
         </main>
       </div>
