@@ -42,6 +42,7 @@ import FileManager from "../pages/cms/Sample/FileManager";
 import Settings from "../pages/cms/Sample/Settings";
 import PageNotFound from "../components/layouts/PageNotFound";
 import DocMiscClipboard from "../pages/cms/Documentation/components/Misc/components/Clipboard";
+import DocMiscImages from "@/pages/cms/Documentation/components/Misc/components/Images";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -207,6 +208,10 @@ export const router = createBrowserRouter([
                   {
                     path: "tag",
                     element: <DocMiscTag />
+                  },
+                  {
+                    path: "images",
+                    element: <DocMiscImages />
                   }
                 ]
               },

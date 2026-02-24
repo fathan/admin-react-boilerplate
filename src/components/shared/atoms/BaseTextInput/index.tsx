@@ -15,6 +15,7 @@ type BaseTextInputProps = InputProps & {
   isRequired?: boolean;
   registration?: UseFormRegisterReturn;
   type?: string;
+  className?: string;
 };
 
 export function BaseTextInput({
@@ -25,6 +26,7 @@ export function BaseTextInput({
   isRequired = false,
   registration,
   type = "text",
+  className,
   ...inputProps
 }: BaseTextInputProps) {
   return (
@@ -47,6 +49,7 @@ export function BaseTextInput({
           type={type}
           {...registration}
           {...inputProps}
+          className={className}
         />
 
         {error ? (

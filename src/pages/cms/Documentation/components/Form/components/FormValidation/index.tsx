@@ -1,4 +1,4 @@
-import { Box, Button, Stack } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
@@ -15,6 +15,7 @@ import { BaseDatePicker } from "@/components/shared/atoms/BaseDatePicker";
 import { BaseAsyncSelect } from "@/components/shared/atoms/BaseAsyncSelect";
 import { BaseFileUpload } from "@/components/shared/atoms/BaseFileUpload";
 import { BaseNumberInput } from "@/components/shared/atoms/BaseNumberInput";
+import { CheckboxCardField } from "@/components/shared/molecules/UICheckboxCardField";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -48,7 +49,9 @@ export default function DocFormValidation() {
     role: null,
     birthdate: "",
     user: [],
-    age: 17
+    age: "13",
+    plan: "",
+    features: []
   } as unknown as FormSchemaType;
 
   /* ================= FORM ================= */
@@ -74,7 +77,7 @@ export default function DocFormValidation() {
   return (
     <Box maxW="full" mx="auto" mt={10}>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Stack gap={4}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {/* TEXT INPUTS */}
           <BaseTextInput
             label="Name"
@@ -108,10 +111,50 @@ export default function DocFormValidation() {
           {/* CHECKBOX */}
           <BaseCheckbox<FormSchemaType>
             label="Accept Terms"
+            labelSecondary="Yes"
             name="isAgree"
             control={control}
             error={errors.isAgree?.message}
           />
+          
+          {/* CHECKBOX CARD */}
+          <div className="col-span-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              {/* ===== SINGLE SELECT ===== */}
+              <CheckboxCardField<FormSchemaType>
+                name="plan"
+                control={control}
+                value="starter"
+                label="Starter Plan"
+                description="Basic features"
+              />
+
+              <CheckboxCardField<FormSchemaType>
+                name="plan"
+                control={control}
+                value="pro"
+                label="Pro Plan"
+                description="Best for professionals"
+              />
+
+              {/* ===== MULTI SELECT ===== */}
+              <CheckboxCardField<FormSchemaType>
+                name="features"
+                control={control}
+                value="analytics"
+                label="Analytics"
+                description="Advanced analytics features"
+              />
+
+              <CheckboxCardField<FormSchemaType>
+                name="features"
+                control={control}
+                value="priority-support"
+                label="Priority Support"
+                description="Get priority customer support"
+              />
+            </div>
+          </div>
 
           {/* SWITCH */}
           <BaseSwitchInput<FormSchemaType>
@@ -123,13 +166,15 @@ export default function DocFormValidation() {
           />
 
           {/* TEXT AREA */}
-          <BaseTextArea
-            label="Description"
-            name="description"
-            placeholder="Deskripsi user (opsional)"
-            error={errors.description?.message}
-            registration={register("description")}
-          />
+          <div className="col-span-2">
+            <BaseTextArea
+              label="Description"
+              name="description"
+              placeholder="Deskripsi user (opsional)"
+              error={errors.description?.message}
+              registration={register("description")}
+            />
+          </div>
 
           {/* RADIO */}
           <BaseRadioGroup
@@ -154,7 +199,6 @@ export default function DocFormValidation() {
             name="birthdate"
             control={control}
             label="Tanggal Lahir"
-            helperText="Pilih tanggal lahir Anda"
             error={errors.birthdate?.message}
             minDate={new Date(1900, 0, 1)}
             maxDate={new Date()}
@@ -182,6 +226,7 @@ export default function DocFormValidation() {
             registration={register("age")}
           />
 
+          {/* FILE UPLOAD */}
           <BaseFileUpload
             name="avatar"
             control={control}
@@ -202,7 +247,7 @@ export default function DocFormValidation() {
           >
             Submit
           </Button>
-        </Stack>
+        </div>
       </form>
     </Box>
   );

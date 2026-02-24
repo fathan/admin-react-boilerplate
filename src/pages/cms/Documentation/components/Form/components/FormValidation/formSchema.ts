@@ -21,9 +21,12 @@ export const formSchema = z.object({
     .refine((v) => v !== null && v.label && v.value, {
       message: "Role wajib dipilih",
     }),
-  birthdate: z.date().refine(date => date <= new Date(), {
-    message: "Tanggal lahir tidak boleh di masa depan",
-  }),
+  birthdate: z
+    .date({
+      message: "Birthdate wajib diisi",
+    })
+    .nullable()
+    .optional(),
   user: z
     .array(
       z.object({
@@ -35,11 +38,13 @@ export const formSchema = z.object({
     .refine((v) => !v || v.length > 0, {
       message: "User harus dipilih jika diisi",
     }),
-  age: z.number().min(0, "Umur tidak boleh negatif").max(120, "Umur tidak boleh lebih dari 120").optional(),
+  age: z.string().min(1, "Age wajib diisi").optional(),
   avatar: z
     .array(z.instanceof(File))
     .nonempty({ message: "Avatar wajib diupload" })
     .optional(),
+  plan: z.string().min(1, "Please select a plan"),
+  features: z.array(z.string()).min(1, "Select at least one feature"),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

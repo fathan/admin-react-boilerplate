@@ -1,42 +1,117 @@
-import { Card, Alert } from "@chakra-ui/react";
+import BaseDivider from "@/components/shared/atoms/BaseDivider";
+import { Toaster, toaster } from "@/components/ui/toaster"
+import { Button, HStack, For } from "@chakra-ui/react";
 
 const DocMessagesToasts = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <Card.Root>
-        <Card.Header>
-          <Card.Title>
-            Alert
-          </Card.Title>
-        </Card.Header>
-        <Card.Body>
-          <div className="flex flex-col gap-4">
-            <Alert.Root status="error">
-              <Alert.Indicator />
-              <Alert.Title>There was an error processing your request</Alert.Title>
-            </Alert.Root>
+    <div className="space-y-6">
+      <section>
+        <h1>Default</h1>
+        <BaseDivider />
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            toaster.create({
+              description: "File saved successfully",
+              type: "info",
+            })
+          }
+        >
+          Show Toast
+        </Button>
+      </section>
 
-            <Alert.Root status="info">
-              <Alert.Indicator />
-              <Alert.Title>
-                Chakra is going live on August 30th. Get ready!
-              </Alert.Title>
-            </Alert.Root>
+      <section>
+        <h1>Closeable Toast</h1>
+        <BaseDivider />
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            toaster.create({
+              description: "File saved successfully",
+              type: "info",
+              closable: true,
+            })
+          }
+        >
+          Show Toast
+        </Button>
+      </section>
+      
+      <section>
+        <h1>External Close Toast</h1>
+        <BaseDivider />
+        
+        <HStack>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              toaster.create({
+                description: "File saved successfully",
+                type: "info",
+              })
+            }
+          >
+            Show Toast
+          </Button>
 
-            <Alert.Root status="warning">
-              <Alert.Indicator />
-              <Alert.Title>
-                Seems your account is about expire, upgrade now
-              </Alert.Title>
-            </Alert.Root>
+          <Button variant="outline" size="sm" onClick={() => toaster.dismiss()}>
+            Close Toasts
+          </Button>
+        </HStack>
+      </section>
+      
+      <section>
+        <h1>Type Toast</h1>
+        <BaseDivider />
+        
+        <HStack>
+          <For each={["success", "error", "warning", "info"]}>
+            {(type) => (
+              <Button
+                size="sm"
+                variant="outline"
+                key={type}
+                onClick={() =>
+                  toaster.create({
+                    title: `Toast status is ${type}`,
+                    type: type,
+                  })
+                }
+              >
+                {type}
+              </Button>
+            )}
+          </For>
+        </HStack>
+      </section>
+      
+      <section>
+        <h1>With Action Toast</h1>
+        <BaseDivider />
+        
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            toaster.success({
+              title: "Update successful",
+              description: "File saved successfully to the server",
+              action: {
+                label: "Undo",
+                onClick: () => console.log("Undo"),
+              },
+            })
+          }
+        >
+          Click me
+        </Button>
+      </section>
 
-            <Alert.Root status="success">
-              <Alert.Indicator />
-              <Alert.Title>Data uploaded to the server. Fire on!</Alert.Title>
-            </Alert.Root>
-          </div>
-        </Card.Body>
-      </Card.Root>
+      <Toaster />
     </div>
   )
 }

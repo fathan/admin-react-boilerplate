@@ -81,7 +81,7 @@ export default function DocFormBasic() {
         <Heading mb={6}>Form Basic</Heading>
 
         <form onSubmit={handleSubmit}>
-          <Stack gap={4}>
+          <Stack gap={4} maxW="md">
             {/* TEXT */}
             <Field.Root>
               <Field.Label>Name</Field.Label>

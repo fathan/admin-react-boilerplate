@@ -8,6 +8,7 @@ import { useController, FieldValues, Path, Control } from "react-hook-form";
 
 type BaseCheckboxProps<T extends FieldValues> = {
   label?: string;
+  labelSecondary?: string;
   name: Path<T>;
   control: Control<T>;
   error?: string;
@@ -17,6 +18,7 @@ type BaseCheckboxProps<T extends FieldValues> = {
 
 export function BaseCheckbox<T extends FieldValues>({
   label,
+  labelSecondary,
   name,
   control,
   error,
@@ -48,7 +50,7 @@ export function BaseCheckbox<T extends FieldValues>({
       >
         <Checkbox.HiddenInput />
         <Checkbox.Control />
-        <Checkbox.Label>{label}</Checkbox.Label>
+        <Checkbox.Label>{labelSecondary}</Checkbox.Label>
       </Checkbox.Root>
 
       {error ? (
