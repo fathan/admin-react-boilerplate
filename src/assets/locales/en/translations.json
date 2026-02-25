@@ -1,5 +1,38 @@
 {
-  "home": {
-    "greeting": "Hello, world!"
-  }
+  "app": {
+    "name": "My App",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "users": "Users",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "action": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "empty": "No data available"
+  },
+  "greeting": {
+    "hello": "Hello, {{name}}!",
+    "welcome": "Welcome back, {{name}}!"
+  },
+  "item_count_one": "{{count}} item",
+  "item_count_other": "{{count}} items"
 }

@@ -50,6 +50,7 @@ import DocButtonIconButton from "@/pages/cms/Documentation/components/Button/com
 import DocTableDatatableClientSide from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ClientSide";
 import DocTableDatatableServerSide from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ServerSide";
 import DocTableDatatableColMixin from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ColMixin";
+import DocI18n from "@/pages/cms/Documentation/components/I18n";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -121,6 +122,10 @@ export const router = createBrowserRouter([
             children: [
               { index: true,
                 element: <Navigate to="button" replace />
+              },
+              {
+                path: 'i18n',
+                element: <DocI18n />
               },
               {
                 path: "button",

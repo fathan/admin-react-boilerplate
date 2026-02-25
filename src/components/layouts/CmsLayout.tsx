@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react"
 import { useTheme } from "next-themes"
 import { ChevronDown } from "lucide-react"
+import UILanguageSwitcher from "../shared/molecules/UILanguageSwitcher"
 
 export default function CmsLayout() {
   const { theme, setTheme } = useTheme()
@@ -28,6 +29,8 @@ export default function CmsLayout() {
             <Text fontWeight="bold">CMS Dashboard</Text>
 
             <Flex align="center" gap="4">
+              <UILanguageSwitcher />
+
               {/* Dark Mode Switch */}
               <Flex align="center" gap="2">
                 <Text fontSize="sm">

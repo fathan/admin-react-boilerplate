@@ -1,5 +1,38 @@
 {
-  "home": {
-    "greeting": "Halo, Dunia!"
-  }
+  "app": {
+    "name": "Aplikasi Saya",
+    "loading": "Memuat..."
+  },
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "users": "Pengguna",
+    "settings": "Pengaturan",
+    "logout": "Keluar"
+  },
+  "action": {
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Ubah",
+    "add": "Tambah",
+    "search": "Cari",
+    "confirm": "Konfirmasi",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "close": "Tutup"
+  },
+  "status": {
+    "active": "Aktif",
+    "inactive": "Tidak Aktif",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "empty": "Tidak ada data"
+  },
+  "greeting": {
+    "hello": "Halo, {{name}}!",
+    "welcome": "Selamat datang kembali, {{name}}!"
+  },
+  "item_count_one": "{{count}} item",
+  "item_count_other": "{{count}} item"
 }
