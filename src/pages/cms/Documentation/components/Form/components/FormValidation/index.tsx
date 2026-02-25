@@ -1,4 +1,4 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo } from "react";
@@ -16,6 +16,7 @@ import { BaseAsyncSelect } from "@/components/shared/atoms/BaseAsyncSelect";
 import { BaseFileUpload } from "@/components/shared/atoms/BaseFileUpload";
 import { BaseNumberInput } from "@/components/shared/atoms/BaseNumberInput";
 import { CheckboxCardField } from "@/components/shared/molecules/UICheckboxCardField";
+import UIRadioCardGroupField from "@/components/shared/molecules/UIRadioCardGroupField";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -38,6 +39,31 @@ export default function DocFormValidation() {
     []
   );
 
+  // //////////////////////////////////////
+
+  const billingItems = [
+    {
+      value: "monthly",
+      label: "Bulanan",
+      description: "Bayar tiap bulan",
+      icon: <span>📅</span>,
+    },
+    {
+      value: "yearly",
+      label: "Tahunan",
+      description: "Hemat 20%",
+      icon: <span>🎁</span>,
+    },
+  ];
+
+  const regionItems = [
+    { value: "us-east", label: "US East", description: "Virginia, USA" },
+    { value: "eu-west", label: "EU West", description: "Frankfurt, DE" },
+    { value: "ap-southeast", label: "AP Southeast", description: "Singapore" },
+  ];
+
+  // //////////////////////////////////////
+
   const defaultValues ={
     name: "",
     email: "",
@@ -51,7 +77,9 @@ export default function DocFormValidation() {
     user: [],
     age: "13",
     plan: "",
-    features: []
+    features: [],
+    billing: undefined,
+    region: undefined,
   } as unknown as FormSchemaType;
 
   /* ================= FORM ================= */
@@ -185,6 +213,36 @@ export default function DocFormValidation() {
             error={errors.gender?.message}
           />
 
+          {/* RADIO CARD */}
+          <div className="col-span-3">
+            <UIRadioCardGroupField<FormSchemaType>
+              name="billing"
+              control={control}
+              label="Siklus Penagihan"
+              required
+              items={billingItems}
+              orientation="horizontal"
+              colorPalette="blue"
+              variant="subtle"
+              error={errors.billing?.message}
+            />
+          </div>
+
+          <div className="col-span-3">
+            <UIRadioCardGroupField<FormSchemaType>
+              name="region"
+              control={control}
+              label="Region Server"
+              helperText="Pilih region terdekat untuk latensi optimal"
+              required
+              items={regionItems}
+              orientation="horizontal"
+              colorPalette="blue"
+              variant="surface"
+              error={errors.region?.message}
+            />
+          </div>
+
           {/* SELECT */}
           <BaseSelectInput
             label="Role"
@@ -237,18 +295,28 @@ export default function DocFormValidation() {
             helperText="Maks. 3 file — JPG, PNG atau PDF"
             error={errors.avatar?.message}
           />
-
-
-          {/* SUBMIT */}
-          <Button
-            type="submit"
-            colorPalette="blue"
-            loading={isSubmitting}
-          >
-            Submit
-          </Button>
         </div>
+
+        <Button
+          type="submit"
+          colorPalette="blue"
+          loading={isSubmitting}
+        >
+          Submit
+        </Button>
       </form>
+
+      {/* Debug: Tampilkan error di bawah form */}
+      {Object.keys(errors).length > 0 && (
+        <Box mt={4} p={4} bg="red.50" borderRadius="md">
+          <Text fontWeight="bold" color="red.700">Error Details:</Text>
+          {Object.entries(errors).map(([key, value]) => (
+            <Text key={key} color="red.600">
+              {key}: {value?.message}
+            </Text>
+          ))}
+        </Box>
+      )}
     </Box>
   );
 }

@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+const BILLING_VALUES = ["monthly", "yearly"] as const;
+const REGION_VALUES = ["us-east", "eu-west", "ap-southeast"] as const;
+
 export const formSchema = z.object({
   name: z.string().min(1, "Nama wajib diisi"),
   email: z.string().min(1, "Email wajib diisi").email("Format email tidak valid"),
@@ -44,6 +47,12 @@ export const formSchema = z.object({
     .nonempty({ message: "Avatar wajib diupload" })
     .optional(),
   plan: z.string().min(1, "Please select a plan"),
+  billing: z.enum(BILLING_VALUES, {
+    error: () => ({ message: "Pilih siklus penagihan" }),
+  }),
+  region: z.enum(REGION_VALUES, {
+    error: () => ({ message: "Pilih region server" }),
+  }),
   features: z.array(z.string()).min(1, "Select at least one feature"),
 });
 

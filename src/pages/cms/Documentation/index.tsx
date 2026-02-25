@@ -165,7 +165,7 @@ export default function Documentation() {
 
   return (
     <div className="flex">
-      <aside className="w-1/5 pr-4 border-r fixed h-screen overflow-y-auto">
+      <aside className="fixed top-32 left-76 h-[calc(100vh-4rem)] w-1/5 pr-4 border-r overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Documentation</h2>
 
         <TreeView.Root
