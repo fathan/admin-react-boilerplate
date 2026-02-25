@@ -84,3 +84,17 @@ export function toGetUsersParams(params: ServerSideParams): GetUsersParams {
     sort_dir: sortCol ? (sortCol.desc ? "desc" : "asc") : undefined,
   };
 }
+
+export interface CreateUserPayload {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
+export interface UpdateUserPayload {
+  name?: string;
+  email?: string;
+  password?: string;
+  role?: string;
+}

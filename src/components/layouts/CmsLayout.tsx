@@ -10,22 +10,19 @@ import {
 } from "@chakra-ui/react"
 import { useTheme } from "next-themes"
 import { ChevronDown } from "lucide-react"
-import UILanguageSwitcher from "../shared/molecules/UILanguageSwitcher"
+import UILanguageSwitcher from "@/components/shared/molecules/UILanguageSwitcher"
+import UIBreadcrumbs from "../shared/molecules/UIBreadcrumbs"
 
 export default function CmsLayout() {
   const { theme, setTheme } = useTheme()
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#12110e] flex">
-      {/* Sidebar */}
       <Sidebar />
 
       <div className="flex-1 ml-72">
-        {/* Header */}
-        <div
-          className="fixed py-3 top-0 left-[18rem] right-0 h-16 bg-white dark:bg-[#1a1814] rounded-2xl border border-gray-200 dark:border-gray-600 m-8 mt-6 z-50"
-        >
-          <div className="flex justify-between items-center px-6">
+        <div className="fixed top-0 left-[18rem] right-0 m-8 pt-10 -mt-3 z-50 bg-white">
+          <div className="flex justify-between items-center px-6 py-3 h-16 bg-white dark:bg-[#1a1814] rounded-2xl border border-gray-200 dark:border-gray-600">
             <Text fontWeight="bold">CMS Dashboard</Text>
 
             <Flex align="center" gap="4">
@@ -76,10 +73,14 @@ export default function CmsLayout() {
               </Menu.Root>
             </Flex>
           </div>
+
+          <div className="mt-4">
+            <UIBreadcrumbs separator=">" />
+          </div>
         </div>
 
         {/* Main Content */}
-        <main className="pt-32 p-8">
+        <main className="pt-36 p-8 bg-white">
           <Outlet />
         </main>
       </div>

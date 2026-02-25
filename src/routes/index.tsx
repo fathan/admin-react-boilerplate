@@ -1,47 +1,47 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import AuthLayout from "../components/layouts/AuthLayout";
-import CmsLayout from "../components/layouts/CmsLayout";
-import GuestRoute from "../routes/GuestRoute";
+import AuthLayout from "@/components/layouts/AuthLayout";
+import CmsLayout from "@/components/layouts/CmsLayout";
+import GuestRoute from "@/routes/GuestRoute";
 
-import Login from "../pages/auth/Login";
-import Dashboard from "../pages/cms/Dashboard";
+import Login from "@/pages/auth/Login";
+import Dashboard from "@/pages/cms/Dashboard";
 
-import Documentation from "../pages/cms/Documentation";
-import DocButton from "../pages/cms/Documentation/components/Button";
-import DocForm from "../pages/cms/Documentation/components/Form";
-import DocFormBasic from "../pages/cms/Documentation/components/Form/components/FormBasic";
-import DocFormValidation from "../pages/cms/Documentation/components/Form/components/FormValidation";
-import DocMiscAvatar from "../pages/cms/Documentation/components/Misc/components/Avatar";
-import DocMiscBadge from "../pages/cms/Documentation/components/Misc/components/Badge";
-import DocMisc from "../pages/cms/Documentation/components/Misc";
-import DocMiscChip from "../pages/cms/Documentation/components/Misc/components/Chip";
-import DocMiscEmptyData from "../pages/cms/Documentation/components/Misc/components/EmptyData";
-import DocMiscLink from "../pages/cms/Documentation/components/Misc/components/Link";
-import DocMiscProgressBar from "../pages/cms/Documentation/components/Misc/components/ProgressBar";
-import DocMiscTag from "../pages/cms/Documentation/components/Misc/components/Tag";
-import DocPanel from "../pages/cms/Documentation/components/Panel";
-import DocPanelAccordion from "../pages/cms/Documentation/components/Panel/components/Accordion";
-import DocPanelCard from "../pages/cms/Documentation/components/Panel/components/Card";
-import DocPanelDivider from "../pages/cms/Documentation/components/Panel/components/Divider";
-import DocPanelTabs from "../pages/cms/Documentation/components/Panel/components/Tabs";
-import DocMessages from "../pages/cms/Documentation/components/Messages";
-import DocMessagesAlert from "../pages/cms/Documentation/components/Messages/components/Alert";
-import DocMessagesToasts from "../pages/cms/Documentation/components/Messages/components/Toasts";
-import DocTable from "../pages/cms/Documentation/components/Table";
-import DocTableBasic from "../pages/cms/Documentation/components/Table/components/Basic";
-import DocTableDatatable from "../pages/cms/Documentation/components/Table/components/Datatable";
-import CmsUsersList from "../pages/cms/Users/List";
-import CmsUsersCreate from "../pages/cms/Users/Create";
-import CmsUsersDetail from "../pages/cms/Users/Detail";
-import CmsUsersUpdate from "../pages/cms/Users/Update";
-import CmsUsers from "../pages/cms/Users";
+import Documentation from "@/pages/cms/Documentation";
+import DocButton from "@/pages/cms/Documentation/components/Button";
+import DocForm from "@/pages/cms/Documentation/components/Form";
+import DocFormBasic from "@/pages/cms/Documentation/components/Form/components/FormBasic";
+import DocFormValidation from "@/pages/cms/Documentation/components/Form/components/FormValidation";
+import DocMiscAvatar from "@/pages/cms/Documentation/components/Misc/components/Avatar";
+import DocMiscBadge from "@/pages/cms/Documentation/components/Misc/components/Badge";
+import DocMisc from "@/pages/cms/Documentation/components/Misc";
+import DocMiscChip from "@/pages/cms/Documentation/components/Misc/components/Chip";
+import DocMiscEmptyData from "@/pages/cms/Documentation/components/Misc/components/EmptyData";
+import DocMiscLink from "@/pages/cms/Documentation/components/Misc/components/Link";
+import DocMiscProgressBar from "@/pages/cms/Documentation/components/Misc/components/ProgressBar";
+import DocMiscTag from "@/pages/cms/Documentation/components/Misc/components/Tag";
+import DocPanel from "@/pages/cms/Documentation/components/Panel";
+import DocPanelAccordion from "@/pages/cms/Documentation/components/Panel/components/Accordion";
+import DocPanelCard from "@/pages/cms/Documentation/components/Panel/components/Card";
+import DocPanelDivider from "@/pages/cms/Documentation/components/Panel/components/Divider";
+import DocPanelTabs from "@/pages/cms/Documentation/components/Panel/components/Tabs";
+import DocMessages from "@/pages/cms/Documentation/components/Messages";
+import DocMessagesAlert from "@/pages/cms/Documentation/components/Messages/components/Alert";
+import DocMessagesToasts from "@/pages/cms/Documentation/components/Messages/components/Toasts";
+import DocTable from "@/pages/cms/Documentation/components/Table";
+import DocTableBasic from "@/pages/cms/Documentation/components/Table/components/Basic";
+import DocTableDatatable from "@/pages/cms/Documentation/components/Table/components/Datatable";
+import CmsUsersList from "@/pages/cms/Users/List";
+import CmsUsersCreate from "@/pages/cms/Users/Create";
+import CmsUsersDetail from "@/pages/cms/Users/Detail";
+import CmsUsersUpdate from "@/pages/cms/Users/Update";
+import CmsUsers from "@/pages/cms/Users";
 
-import Pages from "../pages/cms/Sample/Pages";
-import FileManager from "../pages/cms/Sample/FileManager";
-import Settings from "../pages/cms/Sample/Settings";
-import PageNotFound from "../components/layouts/PageNotFound";
-import DocMiscClipboard from "../pages/cms/Documentation/components/Misc/components/Clipboard";
+import Pages from "@/pages/cms/Sample/Pages";
+import FileManager from "@/pages/cms/Sample/FileManager";
+import Settings from "@/pages/cms/Sample/Settings";
+import PageNotFound from "@/components/layouts/PageNotFound";
+import DocMiscClipboard from "@/pages/cms/Documentation/components/Misc/components/Clipboard";
 import DocMiscImages from "@/pages/cms/Documentation/components/Misc/components/Images";
 import DocButtonActionButton from "@/pages/cms/Documentation/components/Button/components/ActionButton";
 import DocButtonBasic from "@/pages/cms/Documentation/components/Button/components/Basic";
@@ -54,6 +54,11 @@ import DocI18n from "@/pages/cms/Documentation/components/I18n";
 import DocOther from "@/pages/cms/Documentation/components/Other";
 import DocOtherModal from "@/pages/cms/Documentation/components/Other/components/Modal";
 import DocOtherDrawer from "@/pages/cms/Documentation/components/Other/components/Drawer";
+import DocFormEditor from "@/pages/cms/Documentation/components/Form/components/Editor";
+import DocIntegrationApi from "@/pages/cms/Documentation/components/IntegrationApi";
+import DocIntegrationApiList from "@/pages/cms/Documentation/components/IntegrationApi/List";
+import DocIntegrationApiCreate from "@/pages/cms/Documentation/components/IntegrationApi/Create";
+import DocIntegrationApiUpdate from "@/pages/cms/Documentation/components/IntegrationApi/Update";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -156,6 +161,27 @@ export const router = createBrowserRouter([
                 ]
               },
               {
+                path: "integration-api",
+                element: <DocIntegrationApi />,
+                children: [
+                  { index: true,
+                    element: <Navigate to="list" replace />
+                  },
+                  {
+                    path: "list",
+                    element: <DocIntegrationApiList />
+                  },
+                  {
+                    path: "create",
+                    element: <DocIntegrationApiCreate />
+                  },
+                  {
+                    path: "update",
+                    element: <DocIntegrationApiUpdate />
+                  }
+                ]
+              },
+              {
                 path: "form",
                 element: <DocForm />,
                 children: [
@@ -169,6 +195,10 @@ export const router = createBrowserRouter([
                   {
                     path: "validation",
                     element: <DocFormValidation />
+                  },
+                  {
+                    path: "editor",
+                    element: <DocFormEditor />
                   }
                 ]
               },

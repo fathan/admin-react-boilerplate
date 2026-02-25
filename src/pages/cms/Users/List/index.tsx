@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import AppDataTable from "@/components/shared/organisms/AppDataTable";
 import { createColumns } from "@/types/createColumns";
 import { RowAction, ServerSideParams } from "@/types/datatable.types";
-import { useUsers } from "@/hooks/useUsers";
+import { useUsers } from "@/hooks/users/useUsers";
 import { User } from "@/types/user.types";
 
 // ─── Columns ──────────────────────────────────────────────────────────────────

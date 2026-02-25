@@ -42,6 +42,24 @@ const menus: MenuItem[] = [
     ],
   },
   {
+    label: "Integration API",
+    path: "integration-api",
+    children: [
+      {
+        label: "List",
+        path: "integration-api/list",
+      },
+      {
+        label: "Create",
+        path: "integration-api/create",
+      },
+      {
+        label: "Update",
+        path: "integration-api/update",
+      },
+    ],
+  },
+  {
     label: "Forms",
     path: "form",
     children: [
@@ -52,6 +70,10 @@ const menus: MenuItem[] = [
       {
         label: "Validation",
         path: "form/validation",
+      },
+      {
+        label: "Editor",
+        path: "form/editor",
       },
     ],
   },
@@ -212,7 +234,7 @@ export default function Documentation() {
 
   return (
     <div className="flex">
-      <aside className="fixed top-32 left-76 h-[calc(100vh-10rem)] w-1/5 pr-4 border-r overflow-y-auto">
+      <aside className="fixed top-40 left-76 h-[calc(100vh-13rem)] w-1/5 pr-4 border-r overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Documentation</h2>
 
         <TreeView.Root
