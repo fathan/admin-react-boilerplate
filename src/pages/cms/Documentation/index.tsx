@@ -27,6 +27,14 @@ const menus: MenuItem[] = [
         label: "Action Button",
         path: "button/action-button",
       },
+      {
+        label: "Close Button",
+        path: "button/close-button",
+      },
+      {
+        label: "Icon Button",
+        path: "button/icon-button",
+      },
     ],
   },
   {

@@ -45,6 +45,8 @@ import DocMiscClipboard from "../pages/cms/Documentation/components/Misc/compone
 import DocMiscImages from "@/pages/cms/Documentation/components/Misc/components/Images";
 import DocButtonActionButton from "@/pages/cms/Documentation/components/Button/components/ActionButton";
 import DocButtonBasic from "@/pages/cms/Documentation/components/Button/components/Basic";
+import DocButtonCloseButton from "@/pages/cms/Documentation/components/Button/components/CloseButton";
+import DocButtonIconButton from "@/pages/cms/Documentation/components/Button/components/IconButton";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -131,6 +133,14 @@ export const router = createBrowserRouter([
                   {
                     path: "action-button",
                     element: <DocButtonActionButton />
+                  },
+                  {
+                    path: "close-button",
+                    element: <DocButtonCloseButton />
+                  },
+                  {
+                    path: "icon-button",
+                    element: <DocButtonIconButton />
                   }
                 ]
               },
