@@ -1,16 +1,21 @@
 import { Table } from "@tanstack/react-table";
 
+import BaseTablePerPage from "@/components/shared/atoms/BaseTablePerPage";
 import BaseTablePagination from "@/components/shared/atoms/BaseTablePagination";
 
 interface UIDataTablePaginationProps<TData> {
   table: Table<TData>;
   totalCount: number;
+  pagination?: boolean;
+  pageSizeOptions?: number[];
   serverSide?: boolean;
 }
 
 function UIDataTablePagination<TData>({
   table,
   totalCount,
+  pagination,
+  pageSizeOptions = [10, 25, 50, 100],
   // serverSide,
 }: UIDataTablePaginationProps<TData>) {
   const { pageIndex, pageSize } = table.getState().pagination;
@@ -30,18 +35,30 @@ function UIDataTablePagination<TData>({
         results
       </p>
 
-      {/* Pagination controls */}
-      <BaseTablePagination
-        pageIndex={pageIndex}
-        pageCount={pageCount}
-        canPreviousPage={table.getCanPreviousPage()}
-        canNextPage={table.getCanNextPage()}
-        onFirstPage={() => table.setPageIndex(0)}
-        onPreviousPage={() => table.previousPage()}
-        onNextPage={() => table.nextPage()}
-        onLastPage={() => table.setPageIndex(pageCount - 1)}
-        onGoToPage={(page) => table.setPageIndex(page)}
-      />
+      <div className="flex flex-row items-center gap-3">
+        {/* Page size selector */}
+        {pagination && (
+          <BaseTablePerPage
+            value={table.getState().pagination.pageSize}
+            options={pageSizeOptions}
+            onChange={(size) => table.setPageSize(size)}
+            totalCount={totalCount}
+          />
+        )}
+
+        {/* Pagination controls */}
+        <BaseTablePagination
+          pageIndex={pageIndex}
+          pageCount={pageCount}
+          canPreviousPage={table.getCanPreviousPage()}
+          canNextPage={table.getCanNextPage()}
+          onFirstPage={() => table.setPageIndex(0)}
+          onPreviousPage={() => table.previousPage()}
+          onNextPage={() => table.nextPage()}
+          onLastPage={() => table.setPageIndex(pageCount - 1)}
+          onGoToPage={(page) => table.setPageIndex(page)}
+        />
+      </div>
     </div>
   );
 }

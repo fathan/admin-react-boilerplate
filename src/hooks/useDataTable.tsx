@@ -13,8 +13,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppDataTableProps, DataTableColumnDef, ServerSideParams } from "@/types/datatable.types";
+import { AppDataTableProps, DataTableColumnDef } from "@/types/datatable.types";
 
 export function useDataTable<TData extends object>({
   data = [],
@@ -24,20 +28,18 @@ export function useDataTable<TData extends object>({
   sortable,
   pagination,
   defaultPageSize = 10,
-  pageSizeOptions = [10, 25, 50, 100],
   selectable,
   multiSelect,
   expandable,
   serverSide,
   totalRows,
-  loading,
   onParamsChange,
   onRowSelect,
   initialSorting = [],
   initialColumnVisibility = {},
   initialSearch = "",
 }: AppDataTableProps<TData>) {
-  // ── State ──────────────────────────────────────────────────────────────────
+  /** ── State ────────────────────────────────────────────────────────────────── */
   const [globalFilter, setGlobalFilter] = useState(initialSearch);
   const [sorting, setSorting] = useState<SortingState>(initialSorting);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -50,14 +52,14 @@ export function useDataTable<TData extends object>({
     pageSize: defaultPageSize,
   });
 
-  // Debounce search untuk server-side
+  /** Debounce search untuk server-side */
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>();
 
-  // ── Build columns dengan checkbox & expand ─────────────────────────────────
+  /** ── Build columns dengan checkbox & expand ───────────────────────────────── */
   const builtColumns = useMemo(() => {
     const result: DataTableColumnDef<TData>[] = [];
 
-    // Expand column
+    /** Expand column */
     if (expandable) {
       result.push({
         id: "__expand__",
@@ -91,7 +93,7 @@ export function useDataTable<TData extends object>({
       });
     }
 
-    // Checkbox column
+    /** Checkbox column */
     if (multiSelect) {
       result.push({
         id: "__select__",
@@ -147,7 +149,7 @@ export function useDataTable<TData extends object>({
     return [...result, ...columns];
   }, [columns, expandable, multiSelect, selectable]);
 
-  // ── TanStack Table instance ────────────────────────────────────────────────
+  /** ── TanStack Table instance ──────────────────────────────────────────────── */
   const table = useReactTable<TData>({
     data,
     columns: builtColumns,
@@ -187,7 +189,7 @@ export function useDataTable<TData extends object>({
     getExpandedRowModel: expandable ? getExpandedRowModel() : undefined,
   });
 
-  // ── Notify parent saat row selection berubah ───────────────────────────────
+  /** ── Notify parent saat row selection berubah ─────────────────────────────── */
   useEffect(() => {
     if (!onRowSelect) return;
     const selectedRows = table
@@ -196,7 +198,7 @@ export function useDataTable<TData extends object>({
     onRowSelect(selectedRows);
   }, [rowSelection]);
 
-  // ── Server-side: notify parent saat params berubah ────────────────────────
+  /** ── Server-side: notify parent saat params berubah ──────────────────────── */
   useEffect(() => {
     if (!serverSide || !onParamsChange) return;
 
@@ -213,9 +215,9 @@ export function useDataTable<TData extends object>({
     return () => clearTimeout(searchDebounceRef.current);
   }, [pagination_.pageIndex, pagination_.pageSize, globalFilter, sorting, serverSide]);
 
-  // ── Export CSV ─────────────────────────────────────────────────────────────
+  /** ── Export CSV ───────────────────────────────────────────────────────────── */
   const exportCsv = useCallback(
-    (filename = "export.csv") => {
+    (filename = "document.csv") => {
       const visibleColumns = table
         .getAllColumns()
         .filter(
@@ -256,7 +258,34 @@ export function useDataTable<TData extends object>({
     [table]
   );
 
-  // ── Computed values ────────────────────────────────────────────────────────
+  /** ── Export Pdf ───────────────────────────────────────────────────────── */
+  const exportPdf = useCallback(
+    (filename = "document.pdf") => {
+      const doc = new jsPDF();
+      
+      autoTable(doc, {
+        head: [
+          table
+            .getAllColumns()
+            .filter((col) => col.getIsVisible())
+            .map((col) => col.columnDef.header as string),
+        ],
+        body: table
+          .getFilteredRowModel()
+          .rows.map((row) =>
+            table
+              .getAllColumns()
+              .filter((col) => col.getIsVisible())
+              .map((col) => String(row.getValue(col.id)))
+          ),
+      });
+
+      doc.save(filename);
+    },
+    [table]
+  );
+
+  /** ── Computed values ──────────────────────────────────────────────────────── */
   const selectedCount = Object.keys(rowSelection).length;
   const totalCount = serverSide ? (totalRows ?? 0) : table.getFilteredRowModel().rows.length;
 
@@ -267,6 +296,7 @@ export function useDataTable<TData extends object>({
     selectedCount,
     totalCount,
     exportCsv,
+    exportPdf,
     pagination: pagination_,
     setPagination,
   };

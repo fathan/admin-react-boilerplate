@@ -9,7 +9,7 @@ import {
 export const userService = {
   async getUsers(params: GetUsersParams): Promise<GetUsersResponse> {
     try {
-      const response = await api.get<GetUsersResponse>("/users", { params });
+      const response = await api.get<GetUsersResponse>("/cms/users", { params });
       return response.data;
     }
     catch (error) {
@@ -19,7 +19,7 @@ export const userService = {
 
   async createUser(payload: CreateUserPayload) {
     try {
-      const response = await api.post("/users", payload);
+      const response = await api.post("/cms/users", payload);
       return response.data;
     }
     catch (error) {
@@ -29,7 +29,7 @@ export const userService = {
 
   async updateUser(id: string, payload: UpdateUserPayload) {
     try {
-      const response = await api.put(`/users/${id}`, payload);
+      const response = await api.put(`/cms/users/${id}`, payload);
       return response.data;
     }
     catch (error) {
@@ -39,7 +39,7 @@ export const userService = {
 
   async deleteUser(id: string) {
     try {
-      const response = await api.delete(`/users/${id}`);
+      const response = await api.delete(`/cms/users/${id}`);
       return response.data;
     }
     catch (error) {

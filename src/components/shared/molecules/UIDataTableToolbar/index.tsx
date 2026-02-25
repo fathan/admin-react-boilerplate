@@ -1,8 +1,12 @@
-import { Table } from "@tanstack/react-table";
 import { useRef, useState } from "react";
+import { Button, Menu, Portal } from "@chakra-ui/react";
+import { Table } from "@tanstack/react-table";
+
+import { DataTableColumnDef } from "@/types/datatable.types";
+
 import BaseTablePerPage from "@/components/shared/atoms/BaseTablePerPage";
 import BaseTableSearchInput from "@/components/shared/atoms/BaseTableSearchInput";
-import { DataTableColumnDef } from "@/types/datatable.types";
+import { LuDownload } from "react-icons/lu";
 
 interface UIDataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -14,8 +18,10 @@ interface UIDataTableToolbarProps<TData> {
   searchPlaceholder?: string;
   columnToggle?: boolean;
   exportCsv?: boolean;
+  exportPdf?: boolean;
   exportFilename?: string;
   onExportCsv?: () => void;
+  onExportPdf?: () => void;
   pagination?: boolean;
   pageSizeOptions?: number[];
   totalCount: number;
@@ -33,7 +39,9 @@ function UIDataTableToolbar<TData>({
   searchPlaceholder,
   columnToggle,
   exportCsv,
+  exportPdf,
   onExportCsv,
+  onExportPdf,
   pagination,
   pageSizeOptions = [10, 25, 50, 100],
   totalCount,
@@ -161,18 +169,25 @@ function UIDataTableToolbar<TData>({
             </div>
           )}
 
-          {/* Export CSV */}
-          {exportCsv && (
-            <button
-              onClick={onExportCsv}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Export CSV
-            </button>
-          )}
+          <Menu.Root>
+            <Menu.Trigger asChild>
+              <Button variant="outline">
+                <LuDownload className="mr-2" />
+                Export
+              </Button>
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content>
+                  <Menu.ItemGroup>
+                    <Menu.ItemGroupLabel>Export</Menu.ItemGroupLabel>
+                    {exportCsv && (<Menu.Item value="csv" onClick={onExportCsv}>CSV</Menu.Item>)}
+                    {exportPdf && (<Menu.Item value="pdf" onClick={onExportPdf}>PDF</Menu.Item>)}
+                  </Menu.ItemGroup>
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { ColumnDef, SortingState, VisibilityState } from "@tanstack/react-table";
 import React from "react";
 
-// ─── Row Action ──────────────────────────────────────────────────────────────
+/** ─── Row Action ────────────────────────────────────────────────────────────── */
 
 export interface RowAction<TData> {
   label: string;
@@ -12,7 +12,7 @@ export interface RowAction<TData> {
   onClick: (row: TData) => void;
 }
 
-// ─── Server Side Params ───────────────────────────────────────────────────────
+/** ─── Server Side Params ─────────────────────────────────────────────────────── */
 
 export interface ServerSideParams {
   page: number;
@@ -76,6 +76,8 @@ export interface AppDataTableProps<TData extends object> {
   columnToggle?: boolean;
   /** Aktifkan export CSV */
   exportCsv?: boolean;
+  /** Aktifkan export Pdf */
+  exportPdf?: boolean;
   /** Nama file CSV yang diexport */
   exportFilename?: string;
   /** Aktifkan column pinning */

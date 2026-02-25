@@ -39,20 +39,21 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
   const {
     title,
     description,
-    columns,
+    // columns,
+    // selectable,
+    // multiSelect,
     searchable,
     searchPlaceholder,
     sortable,
     pagination,
     pageSizeOptions = [10, 25, 50, 100],
-    selectable,
-    multiSelect,
     expandable,
     renderExpandedRow,
     rowActions = [],
     maxVisibleRowActions = 2,
     columnToggle,
     exportCsv,
+    exportPdf,
     exportFilename,
     columnPinning,
     serverSide,
@@ -71,6 +72,7 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
     selectedCount,
     totalCount,
     exportCsv: handleExportCsv,
+    exportPdf: handleExportPdf,
   } = useDataTable(props);
 
   const rows = table.getRowModel().rows;
@@ -93,8 +95,10 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
           searchPlaceholder={searchPlaceholder}
           columnToggle={columnToggle}
           exportCsv={exportCsv}
+          exportPdf={exportPdf}
           exportFilename={exportFilename}
-          onExportCsv={() => handleExportCsv(exportFilename ?? "export.csv")}
+          onExportCsv={() => handleExportCsv(exportFilename ?? "document.csv")}
+          onExportPdf={() => handleExportPdf(exportFilename ?? "document.pdf")}
           pagination={pagination}
           pageSizeOptions={pageSizeOptions}
           totalCount={totalCount}
@@ -156,6 +160,8 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
       {pagination && (
         <UIDataTablePagination
           table={table}
+          pagination={pagination}
+          pageSizeOptions={pageSizeOptions}
           totalCount={totalCount}
           serverSide={serverSide}
         />

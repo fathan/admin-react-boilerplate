@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import AuthLayout from "@/components/layouts/AuthLayout";
 import CmsLayout from "@/components/layouts/CmsLayout";
 import GuestRoute from "@/routes/GuestRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 import Login from "@/pages/auth/Login";
 import Dashboard from "@/pages/cms/Dashboard";
@@ -83,7 +84,7 @@ export const router = createBrowserRouter([
   },
   // CMS
   {
-    element: <GuestRoute />,
+    element: <ProtectedRoute />,
     children: [
       {
         path: "/",
