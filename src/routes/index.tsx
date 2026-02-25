@@ -47,6 +47,9 @@ import DocButtonActionButton from "@/pages/cms/Documentation/components/Button/c
 import DocButtonBasic from "@/pages/cms/Documentation/components/Button/components/Basic";
 import DocButtonCloseButton from "@/pages/cms/Documentation/components/Button/components/CloseButton";
 import DocButtonIconButton from "@/pages/cms/Documentation/components/Button/components/IconButton";
+import DocTableDatatableClientSide from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ClientSide";
+import DocTableDatatableServerSide from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ServerSide";
+import DocTableDatatableColMixin from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ColMixin";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -191,7 +194,24 @@ export const router = createBrowserRouter([
                   },
                   {
                     path: "datatable",
-                    element: <DocTableDatatable />
+                    element: <DocTableDatatable />,
+                    children: [
+                      { index: true,
+                        element: <Navigate to="client-side" replace />
+                      },
+                      {
+                        path: "client-side",
+                        element: <DocTableDatatableClientSide />
+                      },
+                      {
+                        path: "server-side",
+                        element: <DocTableDatatableServerSide />
+                      },
+                      {
+                        path: "col-mixin",
+                        element: <DocTableDatatableColMixin />
+                      }
+                    ]
                   }
                 ]
               },

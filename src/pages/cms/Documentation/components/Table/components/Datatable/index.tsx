@@ -1,7 +1,9 @@
-export default function DocTableDatatable() {
+import { Outlet } from "react-router-dom";
+
+export default function DocTableDatatable () {
   return (
     <>
-      Doc Table Datatable
+      <Outlet />
     </>
   );
 }

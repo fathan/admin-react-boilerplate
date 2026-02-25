@@ -1,6 +1,8 @@
 import { api } from "./api";
+import { GetUsersParams, GetUsersResponse } from "@/types/user.types";
 
-export const getUsers = async () => {
-  const { data } = await api.get("/cms/users");
-  return data;
+export const userService = {
+  getUsers: (params: GetUsersParams) => {
+    return api.get<GetUsersResponse>("/users", { params }).then(res => res.data);
+  },
 };

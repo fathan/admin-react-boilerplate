@@ -1,9 +1,70 @@
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import AppDataTable from "@/components/shared/organisms/AppDataTable";
 import { createColumns } from "@/types/createColumns";
 import { RowAction, ServerSideParams } from "@/types/datatable.types";
-import { useUsers } from "@/hooks/useUsers";
-import { User } from "@/types/user.types";
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: "admin" | "editor" | "viewer";
+  status: "active" | "inactive";
+  joinDate: string;
+  score: number;
+}
+
+// ─── Mock Data + Fetch ────────────────────────────────────────────────────────
+
+const NAMES = ["Alice Johnson", "Bob Smith", "Carol White", "David Brown", "Eva Martinez"] as const;
+const ROLES = ["admin", "editor", "viewer"] as const;
+
+const ALL_DATA: User[] = Array.from({ length: 87 }, (_, i) => ({
+  id: i + 1,
+  name: NAMES[i % 5]!,
+  email: `user${i + 1}@example.com`,
+  role: ROLES[i % 3]!,
+  status: i % 4 === 0 ? "inactive" : "active",
+  joinDate: new Date(2022, i % 12, (i % 28) + 1).toLocaleDateString("id-ID"),
+  score: Math.round((Math.sin(i) * 0.5 + 0.5) * 100),
+}));
+
+async function fetchUsers(
+  params: ServerSideParams
+): Promise<{ data: User[]; total: number }> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let filtered = [...ALL_DATA];
+
+      if (params.search) {
+        const q = params.search.toLowerCase();
+        filtered = filtered.filter(
+          (u) =>
+            u.name.toLowerCase().includes(q) ||
+            u.email.toLowerCase().includes(q)
+        );
+      }
+
+      const sortCol = params.sorting[0];
+      if (sortCol) {
+        const { id, desc } = sortCol;
+        filtered.sort((a, b) => {
+          const aVal = a[id as keyof User] ?? "";
+          const bVal = b[id as keyof User] ?? "";
+          const cmp = aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+          return desc ? -cmp : cmp;
+        });
+      }
+
+      const total = filtered.length;
+      const start = (params.page - 1) * params.pageSize;
+      const data = filtered.slice(start, start + params.pageSize);
+
+      resolve({ data, total });
+    }, 600);
+  });
+}
 
 // ─── Columns ──────────────────────────────────────────────────────────────────
 
@@ -13,7 +74,7 @@ const columns = createColumns<User>({
     header: "Name",
     cell: (info) => (
       <div className="flex items-center gap-2.5">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-400 to-violet-600 flex items-center justify-center text-white text-xs font-semibold flex-shrink-0">
           {info.row.original.name.charAt(0)}
         </div>
         <span className="font-medium text-gray-800">{info.getValue()}</span>
@@ -54,8 +115,7 @@ const columns = createColumns<User>({
       );
     },
   },
-  // Laravel snake_case field
-  join_date: { header: "Join Date", sortable: false },
+  joinDate: { header: "Join Date", sortable: false },
   score: {
     header: "Score",
     cell: (info) => {
@@ -63,7 +123,7 @@ const columns = createColumns<User>({
       return (
         <div className="flex items-center gap-2">
           <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-            <div className="h-full bg-blue-500 rounded-full" style={{ width: `${score}%` }} />
+            <div className="h-full bg-violet-500 rounded-full" style={{ width: `${score}%` }} />
           </div>
           <span className="text-xs text-gray-500 tabular-nums">{score}</span>
         </div>
@@ -82,7 +142,7 @@ const rowActions: RowAction<User>[] = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
       </svg>
     ),
-    onClick: (row) => console.log("Edit:", row),
+    onClick: (row) => alert(`Edit: ${row.name}`),
   },
   {
     label: "Delete",
@@ -93,45 +153,50 @@ const rowActions: RowAction<User>[] = [
     ),
     colorPalette: "red",
     isDisabled: (row) => row.role === "admin",
-    onClick: (row) => console.log("Delete:", row),
+    onClick: (row) => alert(`Delete: ${row.name}`),
   },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsUsersList() {
-  const [params, setParams] = useState<ServerSideParams>({
-    page: 1,
-    pageSize: 10,
-    search: "",
-    sorting: [],
-  });
+export default function DocTableDatatableServerSide() {
+  const [data, setData]       = useState<User[]>([]);
+  const [totalRows, setTotal] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const { data, isLoading, isFetching } = useUsers(params);
+  const handleParamsChange = async (params: ServerSideParams) => {
+    setLoading(true);
+    try {
+      const result = await fetchUsers(params);
+      setData(result.data);
+      setTotal(result.total);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  const handleParamsChange = useCallback((newParams: ServerSideParams) => {
-    setParams(newParams);
+  useEffect(() => {
+    handleParamsChange({ page: 1, pageSize: 10, search: "", sorting: [] });
   }, []);
 
   return (
-    <>
+    <div className="p-6 bg-gray-50 min-h-screen">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Users</h1>
-        <p className="text-sm text-gray-500 mt-1">Manage all registered users</p>
+        <h1 className="text-2xl font-bold text-gray-900">Server-Side Datatable</h1>
+        <p className="text-sm text-gray-500 mt-1">
+          Pagination, sort, dan search dihandle di server. Simulasi latency 600ms.
+        </p>
       </div>
 
       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
         <AppDataTable<User>
-          title="User List"
-          data={data?.data.data ?? []}
-          // Laravel: total ada di meta.total
-          totalRows={data?.data.meta.total ?? 0}
-          // isLoading → skeleton (belum ada data sama sekali)
-          // isFetching → overlay spinner (ada data lama, sedang refetch)
-          loading={isLoading || isFetching}
+          title="Users (Server-Side)"
+          data={data}
           columns={columns}
           rowKey="id"
           serverSide
+          totalRows={totalRows}
+          loading={loading}
           onParamsChange={handleParamsChange}
           searchable
           searchPlaceholder="Search name or email..."
@@ -141,15 +206,13 @@ export default function CmsUsersList() {
           pageSizeOptions={[10, 25, 50]}
           columnToggle
           exportCsv
-          exportFilename="users.csv"
+          exportFilename="users-server.csv"
           columnPinning
-          multiSelect
           rowActions={rowActions}
           maxVisibleRowActions={2}
           highlightOnHover
-          onRowSelect={(rows) => console.log("Selected:", rows)}
         />
       </div>
-    </>
+    </div>
   );
 }

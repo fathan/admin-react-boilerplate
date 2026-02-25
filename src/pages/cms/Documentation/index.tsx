@@ -76,7 +76,21 @@ const menus: MenuItem[] = [
       {
         label: "Datatable",
         path: "table/datatable",
-      }
+        children: [
+          {
+            label: "Client Side",
+            path: "table/datatable/client-side",
+          },
+          {
+            label: "Server Side",
+            path: "table/datatable/server-side",
+          },
+          {
+            label: "Col Mixin",
+            path: "table/datatable/col-mixin",
+          }
+        ],
+      },
     ],
   },
   {
@@ -163,6 +177,21 @@ export default function Documentation() {
     },
   })
 
+  const getAllExpandableIds = (items: MenuItem[]): string[] => {
+    let ids: string[] = []
+
+    for (const item of items) {
+      if (item.children) {
+        ids.push(item.path)
+        ids = ids.concat(getAllExpandableIds(item.children))
+      }
+    }
+
+    return ids
+  }
+
+  const expandedIds = getAllExpandableIds(menus)
+
   return (
     <div className="flex">
       <aside className="fixed top-32 left-76 h-[calc(100vh-4rem)] w-1/5 pr-4 border-r overflow-y-auto">
@@ -170,7 +199,7 @@ export default function Documentation() {
 
         <TreeView.Root
           collection={menuCollection}
-          defaultExpandedValue={["button", "form", "messages", "table", "misc", "panel"]}
+          defaultExpandedValue={expandedIds}
         >
           <TreeView.Tree>
             <TreeView.Node<Node>
