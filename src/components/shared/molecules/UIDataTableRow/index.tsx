@@ -84,12 +84,14 @@ function UIDataTableRow<TData>({
                   title={action.label}
                   className={`
                     flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium
-                    transition-colors disabled:opacity-40 disabled:cursor-not-allowed
+                    transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer
                     ${action.colorPalette === "red"
-                      ? "text-red-600 hover:bg-red-50"
+                      ? "text-white bg-red-600 hover:bg-red-500"
                       : action.colorPalette === "green"
-                      ? "text-green-600 hover:bg-green-50"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "text-white bg-green-600 hover:bg-green-500"
+                      : action.colorPalette === "yellow"
+                      ? "text-white bg-yellow-500 hover:bg-yellow-600"
+                      : "text-white bg-gray-600 hover:bg-gray-500"
                     }
                   `}
                 >

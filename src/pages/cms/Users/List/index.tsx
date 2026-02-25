@@ -68,6 +68,7 @@ const rowActions: RowAction<User>[] = [
     icon: (
       <Edit size={14} strokeWidth={2} className="w-3.5 h-3.5" />
     ),
+    colorPalette: "yellow",
     onClick: (row) => console.log("Edit:", row),
   },
   {

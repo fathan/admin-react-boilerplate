@@ -24,7 +24,6 @@ api.interceptors.response.use(
   (error) => {
     if (error.response.data.message === 'Unauthenticated.') {
       useAuthStore.getState().logout();
-      window.location.href = "/auth";
     }
     return Promise.reject(error);
   }
