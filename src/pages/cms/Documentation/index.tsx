@@ -157,6 +157,20 @@ const menus: MenuItem[] = [
       },
     ],
   },
+  {
+    label: "Other",
+    path: "other",
+    children: [
+      {
+        label: "Modal",
+        path: "other/modal",
+      },
+      {
+        label: "Drawer",
+        path: "other/drawer",
+      }
+    ]
+  },
 ];
 
 export default function Documentation() {

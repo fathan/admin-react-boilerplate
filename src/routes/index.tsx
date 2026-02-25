@@ -51,6 +51,9 @@ import DocTableDatatableClientSide from "@/pages/cms/Documentation/components/Ta
 import DocTableDatatableServerSide from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ServerSide";
 import DocTableDatatableColMixin from "@/pages/cms/Documentation/components/Table/components/Datatable/components/ColMixin";
 import DocI18n from "@/pages/cms/Documentation/components/I18n";
+import DocOther from "@/pages/cms/Documentation/components/Other";
+import DocOtherModal from "@/pages/cms/Documentation/components/Other/components/Modal";
+import DocOtherDrawer from "@/pages/cms/Documentation/components/Other/components/Drawer";
 
 export const router = createBrowserRouter([
   // AUTH
@@ -287,6 +290,23 @@ export const router = createBrowserRouter([
                   {
                     path: "tabs",
                     element: <DocPanelTabs />
+                  }
+                ]
+              },
+              {
+                path: "other",
+                element: <DocOther />,
+                children: [
+                  { index: true,
+                    element: <Navigate to="modal" replace />
+                  },
+                  {
+                    path: "modal",
+                    element: <DocOtherModal />
+                  },
+                  {
+                    path: "drawer",
+                    element: <DocOtherDrawer />
                   }
                 ]
               }
