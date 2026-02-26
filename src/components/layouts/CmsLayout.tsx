@@ -12,9 +12,14 @@ import { useTheme } from "next-themes"
 import { ChevronDown } from "lucide-react"
 import UILanguageSwitcher from "@/components/shared/molecules/UILanguageSwitcher"
 import UIBreadcrumbs from "../shared/molecules/UIBreadcrumbs"
+import { useAuthStore } from "@/stores/authStore"
 
 export default function CmsLayout() {
   const { theme, setTheme } = useTheme()
+
+  const onClickHandleLogout = () => {
+    useAuthStore.getState().logout();
+  }
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#12110e] flex">
@@ -62,10 +67,7 @@ export default function CmsLayout() {
                     <Menu.Item value="profile">
                       Profile
                     </Menu.Item>
-                    <Menu.Item value="settings">
-                      Settings
-                    </Menu.Item>
-                    <Menu.Item value="logout" color="red.500">
+                    <Menu.Item value="logout" color="red.500" onClick={onClickHandleLogout}>
                       Logout
                     </Menu.Item>
                   </Menu.Content>

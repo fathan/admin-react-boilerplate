@@ -18,6 +18,16 @@ export const userService = {
     }
   },
 
+  async getUserById (id: string) {
+    try {
+      const response = await api.get(`/cms/users/${id}`);
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  },
+
   async createUser(payload: CreateUserPayload) {
     try {
       const response = await api.post("/cms/users", payload);

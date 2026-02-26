@@ -5,7 +5,7 @@ import { createColumns } from "@/types/createColumns";
 import { RowAction, ServerSideParams } from "@/types/datatable.types";
 import { User } from "@/types/user.types";
 
-import { useUsers } from "@/hooks/users/useUsers";
+import { useUsers } from "@/hooks/api/users";
 
 import AppDataTable from "@/components/shared/organisms/AppDataTable";
 

@@ -1,6 +1,6 @@
 import BaseTableEmptyState from "@/components/shared/atoms/BaseTableEmptyState";
 import BaseTableLoadingState from "@/components/shared/atoms/BaseTableLoadingState";
-import { useDataTable } from "@/hooks/useDataTable";
+import { useDataTable } from "@/hooks/shared/useDataTable";
 import UIDataTableHeader from "@/components/shared/molecules/UIDataTableHeader";
 import UIDataTablePagination from "@/components/shared/molecules/UIDataTablePagination";
 import UIDataTableRow from "@/components/shared/molecules/UIDataTableRow";

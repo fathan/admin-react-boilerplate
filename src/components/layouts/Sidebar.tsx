@@ -1,20 +1,30 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, LogOut, User } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { Box, LayoutDashboard, LogOut, User } from 'lucide-react';
 import { useAuthStore } from '@/stores/authStore';
+import { Button } from '@chakra-ui/react';
+import { useModal } from '@/providers/modal.providers';
 
 const Sidebar = () => {
-  const navigate = useNavigate();
-
-  const logout = useAuthStore((state) => state.logout);
+  const { showModal } = useModal();
 
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-    { icon: User, label: 'Users', path: '/users' }
+    { icon: User, label: 'Users', path: '/users' },
+    { icon: Box, label: 'Documentations', path: '/documentations' },
   ];
 
   const onClickHandleLogout = () => {
-    logout();
-    navigate('/auth/login');
+    showModal({
+      title: "Logout",
+      content: "Are you sure you want to logout?",
+      cancelText: "No",
+      cancelColor: "gray",
+      confirmText: "Yes",
+      confirmColor: "red",
+      onConfirm: () => {
+        useAuthStore.getState().logout();
+      },
+    });
   }
 
   return (
@@ -45,13 +55,13 @@ const Sidebar = () => {
       </div>
 
       <div className="mt-auto p-6">
-        <button
-          className="flex items-center text-gray-400 space-x-3 p-3 rounded-lg hover:bg-gray-200 transition-colors w-full"
+        <Button
+          variant="plain"
           onClick={ onClickHandleLogout }
         >
           <LogOut className="w-5 h-5" />
           <span>Logout</span>
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/react";
 import { formSchema, FormSchemaType } from "./formSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCreateUser } from "@/hooks/users/useCreateUser";
+import { useCreateUser } from "@/hooks/api/users";
 
 const DocIntegrationApiSendJsonData = () => {
   const { mutate } = useCreateUser();

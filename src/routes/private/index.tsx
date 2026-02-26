@@ -1,14 +1,15 @@
 import { Navigate } from "react-router-dom";
 
 import CmsLayout from "@/components/layouts/CmsLayout";
-import GuestRoute from "../guards/GuestRoute";
+// import GuestRoute from "../guards/GuestRoute";
+import ProtectedRoute from "../guards/ProtectedRoute";
 
 import { dashboardRoutes } from "./dashboard.routes";
 import { documentationRoutes } from "./documentation.routes";
 import { usersRoutes } from "./users.routes";
 
 export const privateRoutes = {
-  element: <GuestRoute />,
+  element: <ProtectedRoute />,
   children: [
     {
       path: "/",

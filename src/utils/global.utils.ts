@@ -11,3 +11,5 @@ export const objectToFormData = (obj: Record<string, any>) => {
 
   return formData;
 };
+
+export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

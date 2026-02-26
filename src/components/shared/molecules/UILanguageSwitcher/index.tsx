@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useLanguage } from "@/hooks/useLanguage";
+import { useLanguage } from "@/hooks/shared/useLanguage";
 
 /**
  * UILanguageSwitcher
