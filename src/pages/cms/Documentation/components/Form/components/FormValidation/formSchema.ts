@@ -54,6 +54,7 @@ export const formSchema = z.object({
     error: () => ({ message: "Pilih region server" }),
   }),
   features: z.array(z.string()).min(1, "Select at least one feature"),
+  rate: z.string().min(1, "Rate wajib diisi"),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;
