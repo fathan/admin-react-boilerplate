@@ -7,6 +7,8 @@ import ProtectedRoute from "../guards/ProtectedRoute";
 import { dashboardRoutes } from "./dashboard.routes";
 import { documentationRoutes } from "./documentation.routes";
 import { usersRoutes } from "./users.routes";
+import { postsRoutes } from "./posts.routes";
+import { pagesRoutes } from "./pages.routes";
 
 export const privateRoutes = {
   element: <ProtectedRoute />,
@@ -22,6 +24,8 @@ export const privateRoutes = {
         dashboardRoutes,
         documentationRoutes,
         usersRoutes,
+        postsRoutes,
+        pagesRoutes
       ]
     }
   ]

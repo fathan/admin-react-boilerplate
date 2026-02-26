@@ -13,12 +13,26 @@ import { ChevronDown } from "lucide-react"
 import UILanguageSwitcher from "@/components/shared/molecules/UILanguageSwitcher"
 import UIBreadcrumbs from "../shared/molecules/UIBreadcrumbs"
 import { useAuthStore } from "@/stores/authStore"
+import { useAppStore } from "@/stores/appStore";
+import { useModal } from "@/providers/modal.providers"
 
 export default function CmsLayout() {
-  const { theme, setTheme } = useTheme()
+  const { showModal } = useModal();
+  const { pageTitle } = useAppStore();
+  const { theme, setTheme } = useTheme();
 
   const onClickHandleLogout = () => {
-    useAuthStore.getState().logout();
+    showModal({
+      title: "Logout",
+      content: "Are you sure you want to logout?",
+      cancelText: "No",
+      cancelColor: "gray",
+      confirmText: "Yes",
+      confirmColor: "red",
+      onConfirm: () => {
+        useAuthStore.getState().logout();
+      },
+    });
   }
 
   return (
@@ -28,7 +42,9 @@ export default function CmsLayout() {
       <div className="flex-1 ml-72">
         <div className="fixed top-0 left-[18rem] right-0 m-8 pt-10 -mt-3 z-50 bg-white dark:bg-[#12110e]">
           <div className="flex justify-between items-center px-6 py-3 h-16 bg-white dark:bg-[#12110e] rounded-2xl border border-gray-200 dark:border-gray-600">
-            <Text fontWeight="bold">CMS Dashboard</Text>
+            <Text fontWeight="bold">
+              {pageTitle}
+            </Text>
 
             <Flex align="center" gap="4">
               <UILanguageSwitcher />
@@ -52,7 +68,7 @@ export default function CmsLayout() {
               {/* Avatar Dropdown */}
               <Menu.Root>
                 <Menu.Trigger asChild>
-                  <IconButton variant="ghost">
+                  <IconButton variant="plain">
                     <Flex align="center" gap="2">
                       <Avatar.Root size="sm">
                         <Avatar.Fallback name="Admin User" />
@@ -62,11 +78,8 @@ export default function CmsLayout() {
                   </IconButton>
                 </Menu.Trigger>
 
-                <Menu.Positioner>
+                <Menu.Positioner className="w-52">
                   <Menu.Content>
-                    <Menu.Item value="profile">
-                      Profile
-                    </Menu.Item>
                     <Menu.Item value="logout" color="red.500" onClick={onClickHandleLogout}>
                       Logout
                     </Menu.Item>

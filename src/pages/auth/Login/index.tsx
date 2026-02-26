@@ -88,7 +88,6 @@ export default function Login() {
               name="email"
               type="email"
               placeholder="e.g: usermail@mail.com"
-              isRequired
               registration={register("email")}
             />
           </UIFormField>
@@ -101,6 +100,7 @@ export default function Login() {
             <BasePasswordInput
               label="Password"
               name="password"
+              placeholder="••••••••"
               registration={register("password")}
             />
           </UIFormField>

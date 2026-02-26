@@ -2,6 +2,8 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { TreeView, createTreeCollection } from "@chakra-ui/react"
 import { LuFile, LuFolder } from "react-icons/lu"
 
+import { usePageTitle } from "@/hooks/shared/usePageTitle";
+
 type MenuItem = {
   label: string;
   path: string;
@@ -218,6 +220,8 @@ const menus: MenuItem[] = [
 ];
 
 export default function Documentation() {
+  usePageTitle("Documentation");
+
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -257,10 +261,6 @@ export default function Documentation() {
   return (
     <div className="flex">
       <aside className="fixed top-40 left-76 h-[calc(100vh-13rem)] w-1/5 pr-4 border-r overflow-y-auto">
-        <h2 className="text-xl font-bold mb-4">
-          Documentation
-        </h2>
-
         <TreeView.Root
           collection={menuCollection}
           defaultExpandedValue={expandedIds}
