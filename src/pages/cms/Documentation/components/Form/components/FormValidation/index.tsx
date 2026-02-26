@@ -1,7 +1,8 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { useMemo } from "react";
+import { Box } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo } from "react";
+import { CheckIcon } from "lucide-react";
 
 import { formSchema, FormSchemaType } from "./formSchema";
 
@@ -19,6 +20,8 @@ import { CheckboxCardField } from "@/components/shared/molecules/UICheckboxCardF
 import UIRadioCardGroupField from "@/components/shared/molecules/UIRadioCardGroupField";
 import { AppFormWrapper } from "@/components/shared/organisms/AppFormWrapper";
 import UIFormField from "@/components/shared/molecules/UIFormField";
+import UIFormActions from "@/components/shared/molecules/UIFormActions";
+import UIDebugErrorRHF from "@/components/shared/molecules/UIDebugErrorRHF";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -380,26 +383,29 @@ export default function DocFormValidation() {
           </UIFormField>
         </div>
 
-        <Button
-          type="submit"
-          colorPalette="blue"
-          loading={isSubmitting}
-        >
-          Submit
-        </Button>
+        <UIFormActions
+          align="left"
+          actions={[
+            {
+              label: "Cancel",
+              variant: "ghost",
+              colorScheme: "gray",
+              onClick: () => alert("Dibatalkan"),
+            },
+            {
+              label: "Submit",
+              type: "submit",
+              colorScheme: "blue",
+              isLoading: isSubmitting,
+              loadingText: "Menyimpan...",
+              leftIcon: <CheckIcon />,
+              onClick: handleSubmit(onSubmit),
+            },
+          ]}
+        />
       </AppFormWrapper>
 
-      {/* Debug: Tampilkan error di bawah form */}
-      {Object.keys(errors).length > 0 && (
-        <Box mt={4} p={4} bg="red.50" borderRadius="md">
-          <Text fontWeight="bold" color="red.700">Error Details:</Text>
-          {Object.entries(errors).map(([key, value]) => (
-            <Text key={key} color="red.600">
-              {key}: {value?.message}
-            </Text>
-          ))}
-        </Box>
-      )}
+      <UIDebugErrorRHF errors={errors} />
     </Box>
   );
 }
