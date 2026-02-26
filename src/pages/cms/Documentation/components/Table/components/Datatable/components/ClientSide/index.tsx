@@ -153,7 +153,7 @@ export default function DocTableDatatableClientSide() {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div className="bg-white dark:bg-[#0a0a09] rounded-2xl p-6 shadow-sm border border-gray-100">
         <AppDataTable<User>
           title="User Management"
           description="Manage all registered users"

@@ -54,6 +54,9 @@ import DocIntegrationApiCreate from "@/pages/cms/Documentation/components/Integr
 import DocIntegrationApiUpdate from "@/pages/cms/Documentation/components/IntegrationApi/Update";
 import DocIntegrationApiSendJsonData from "@/pages/cms/Documentation/components/IntegrationApi/SendJsonData";
 import DocIntegrationApiSendFormData from "@/pages/cms/Documentation/components/IntegrationApi/SendFormData";
+import DocStateManagement from "@/pages/cms/Documentation/components/StateManagement";
+import DocStateManagementBasic from "@/pages/cms/Documentation/components/StateManagement/components/Basic";
+import DocStateManagementPersistant from "@/pages/cms/Documentation/components/StateManagement/components/Persistant";
 
 export const documentationRoutes = {
   path: "documentations",
@@ -138,6 +141,23 @@ export const documentationRoutes = {
         {
           path: "editor",
           element: <DocFormEditor />
+        }
+      ]
+    },
+    {
+      path: "state-management",
+      element: <DocStateManagement />,
+      children: [
+        { index: true,
+          element: <Navigate to="basic" replace />
+        },
+        {
+          path: "basic",
+          element: <DocStateManagementBasic />
+        },
+        {
+          path: "persistant",
+          element: <DocStateManagementPersistant />
         }
       ]
     },

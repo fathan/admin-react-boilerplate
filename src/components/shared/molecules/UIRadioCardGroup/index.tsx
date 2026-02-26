@@ -24,6 +24,7 @@ export interface UIRadioCardGroupProps<T extends FieldValues = FieldValues> {
   columns?: number;
   /** Custom className for the wrapper */
   className?: string;
+  error?: string;
 }
 
 function UIRadioCardGroup<T extends FieldValues = FieldValues>({
@@ -37,6 +38,7 @@ function UIRadioCardGroup<T extends FieldValues = FieldValues>({
   variant = "outline",
   columns,
   className,
+  error,
 }: UIRadioCardGroupProps<T>) {
   const gridCols = columns
     ? `grid-cols-${columns}`
@@ -63,6 +65,7 @@ function UIRadioCardGroup<T extends FieldValues = FieldValues>({
             {...item}
             colorPalette={colorPalette}
             variant={variant}
+            error={error }
           />
         ))}
       </div>

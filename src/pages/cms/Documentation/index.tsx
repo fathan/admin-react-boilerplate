@@ -86,6 +86,20 @@ const menus: MenuItem[] = [
     ],
   },
   {
+    label: "State Management (Zustand)",
+    path: "state-management",
+    children: [
+      {
+        label: "Basic",
+        path: "state-management/basic",
+      },
+      {
+        label: "Persistant",
+        path: "state-management/persistant",
+      },
+    ],
+  },
+  {
     label: "Messages",
     path: "messages",
     children: [
@@ -243,7 +257,9 @@ export default function Documentation() {
   return (
     <div className="flex">
       <aside className="fixed top-40 left-76 h-[calc(100vh-13rem)] w-1/5 pr-4 border-r overflow-y-auto">
-        <h2 className="text-xl font-bold mb-4">Documentation</h2>
+        <h2 className="text-xl font-bold mb-4">
+          Documentation
+        </h2>
 
         <TreeView.Root
           collection={menuCollection}
@@ -256,7 +272,9 @@ export default function Documentation() {
                 node.children ? (
                   <TreeView.BranchControl>
                     <LuFolder />
-                    <TreeView.BranchText>{node.name}</TreeView.BranchText>
+                    <TreeView.BranchText>
+                      {node.name}
+                    </TreeView.BranchText>
                   </TreeView.BranchControl>
                 ) : (
                   <TreeView.Item

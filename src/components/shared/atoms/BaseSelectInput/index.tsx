@@ -1,8 +1,6 @@
 import { ReactNode, useMemo } from "react";
 import {
-  Field,
   Select,
-  Text,
   createListCollection
 } from "@chakra-ui/react";
 import {
@@ -30,14 +28,10 @@ type BaseSelectInputProps<T extends FieldValues> = {
 };
 
 export function BaseSelectInput<T extends FieldValues>({
-  label,
   name,
   control,
   options,
   placeholder = "Select option",
-  error,
-  helperText,
-  isRequired = false,
   multiple = false,
 }: BaseSelectInputProps<T>) {
 
@@ -81,18 +75,7 @@ export function BaseSelectInput<T extends FieldValues>({
   const id = `select-${name}`;
 
   return (
-    <Field.Root invalid={!!error}>
-      {label && (
-        <Field.Label htmlFor={id}>
-          {label}
-          {isRequired && (
-            <Text as="span" color="red.500">
-              *
-            </Text>
-          )}
-        </Field.Label>
-      )}
-
+    <>
       <Select.Root
         multiple={multiple}
         collection={collection}
@@ -123,14 +106,6 @@ export function BaseSelectInput<T extends FieldValues>({
           </Select.Content>
         </Select.Positioner>
       </Select.Root>
-
-      {error ? (
-        <Text color="red.500" fontSize="sm">
-          {error}
-        </Text>
-      ) : helperText ? (
-        <Field.HelperText>{helperText}</Field.HelperText>
-      ) : null}
-    </Field.Root>
+    </>
   );
 }

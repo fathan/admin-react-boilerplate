@@ -10,6 +10,7 @@ export interface BaseRadioCardProps {
   disabled?: boolean;
   variant?: "outline" | "subtle" | "surface";
   colorPalette?: string;
+  error?: string;
 }
 
 const BaseRadioCard: React.FC<BaseRadioCardProps> = ({
@@ -19,35 +20,45 @@ const BaseRadioCard: React.FC<BaseRadioCardProps> = ({
   icon,
   image,
   disabled = false,
+  error,
   // variant = "outline",
   // colorPalette = "blue",
 }) => {
   return (
     <>
-      <RadioCard.Item value={value} disabled={disabled}>
-      <RadioCard.ItemHiddenInput />
-      <RadioCard.ItemControl>
-        <RadioCard.ItemContent>
-          {image && (
-            <img
-              src={image}
-              alt={label}
-              className="w-10 h-10 rounded-md object-cover mb-2"
-            />
-          )}
-          {icon && (
-            <span className="text-2xl mb-2 block">{icon}</span>
-          )}
-          <RadioCard.ItemText fontWeight="semibold">{label}</RadioCard.ItemText>
-          {description && (
-            <RadioCard.ItemDescription fontSize="sm" color="gray.500">
-              {description}
-            </RadioCard.ItemDescription>
-          )}
-        </RadioCard.ItemContent>
-        <RadioCard.ItemIndicator />
-      </RadioCard.ItemControl>
-    </RadioCard.Item>
+      <RadioCard.Item
+        value={value}
+        disabled={disabled}
+        className={ error ? "border border-red-500" : "" }
+      >
+        <RadioCard.ItemHiddenInput />
+        <RadioCard.ItemControl>
+          <RadioCard.ItemContent>
+            {image && (
+              <img
+                src={image}
+                alt={label}
+                className="w-10 h-10 rounded-md object-cover mb-2"
+              />
+            )}
+
+            {icon && (
+              <span className="text-2xl mb-2 block">{icon}</span>
+            )}
+
+            <RadioCard.ItemText fontWeight="semibold">
+              {label}
+            </RadioCard.ItemText>
+
+            {description && (
+              <RadioCard.ItemDescription fontSize="sm" color="gray.500">
+                {description}
+              </RadioCard.ItemDescription>
+            )}
+          </RadioCard.ItemContent>
+          <RadioCard.ItemIndicator />
+        </RadioCard.ItemControl>
+      </RadioCard.Item>
     </>
   );
 };

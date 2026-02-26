@@ -109,7 +109,7 @@ export default function CmsUsersList() {
         </p>
       </div>
 
-      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <div className="bg-white dark:bg-[#12110e] rounded-2xl p-6 shadow-sm border border-gray-100">
         <AppDataTable<User>
           title=""
           data={data?.data.data ?? []}

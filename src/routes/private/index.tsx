@@ -20,7 +20,7 @@ export const privateRoutes = {
         },
         dashboardRoutes,
         documentationRoutes,
-        usersRoutes
+        usersRoutes,
       ]
     }
   ]

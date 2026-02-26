@@ -17,6 +17,8 @@ import { BaseFileUpload } from "@/components/shared/atoms/BaseFileUpload";
 import { BaseNumberInput } from "@/components/shared/atoms/BaseNumberInput";
 import { CheckboxCardField } from "@/components/shared/molecules/UICheckboxCardField";
 import UIRadioCardGroupField from "@/components/shared/molecules/UIRadioCardGroupField";
+import { AppFormWrapper } from "@/components/shared/organisms/AppFormWrapper";
+import UIFormField from "@/components/shared/molecules/UIFormField";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -104,197 +106,278 @@ export default function DocFormValidation() {
 
   return (
     <Box maxW="full" mx="auto" mt={10}>
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <AppFormWrapper onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {/* TEXT INPUTS */}
-          <BaseTextInput
-            label="Name"
-            name="name"
-            type="text"
-            placeholder="Your Name"
-            isRequired
+          <UIFormField
+            label="Nama"
             error={errors.name?.message}
-            registration={register("name")}
-          />
+            isRequired
+          >
+            <BaseTextInput
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              isRequired
+              registration={register("name")}
+            />
+          </UIFormField>
 
-          <BaseTextInput
+          {/* EMAIL INPUTS */}
+          <UIFormField
             label="Email"
-            name="email"
-            type="email"
-            placeholder="email@mail.com"
-            isRequired
             error={errors.email?.message}
-            registration={register("email")}
-          />
-
-          <BaseTextInput
-            label="Password"
-            name="password"
-            type="password"
             isRequired
+          >
+            <BaseTextInput
+              name="email"
+              type="email"
+              placeholder="email@mail.com"
+              isRequired
+              registration={register("email")}
+            />
+          </UIFormField>
+
+          {/* PASSWORD INPUTS */}
+          <UIFormField
+            label="Password"
             error={errors.password?.message}
-            registration={register("password")}
-          />
+            isRequired
+          >
+            <BaseTextInput
+              name="password"
+              type="password"
+              isRequired
+              registration={register("password")}
+            />
+          </UIFormField>
 
           {/* CHECKBOX */}
-          <BaseCheckbox<FormSchemaType>
-            label="Accept Terms"
-            labelSecondary="Yes"
-            name="isAgree"
-            control={control}
+          <UIFormField
+            label="Aggree"
             error={errors.isAgree?.message}
-          />
+            isRequired
+          >
+            <BaseCheckbox<FormSchemaType>
+              labelSecondary="Yes"
+              name="isAgree"
+              control={control}
+            />
+          </UIFormField>
           
           {/* CHECKBOX CARD */}
           <div className="col-span-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               {/* ===== SINGLE SELECT ===== */}
-              <CheckboxCardField<FormSchemaType>
-                name="plan"
-                control={control}
-                value="starter"
-                label="Starter Plan"
-                description="Basic features"
-              />
+              <UIFormField
+                label="Plan"
+                error={errors.plan?.message}
+                isRequired
+              >
+                <CheckboxCardField<FormSchemaType>
+                  name="plan"
+                  control={control}
+                  value="starter"
+                  label="Starter Plan"
+                  description="Basic features"
+                  error={errors.plan?.message}
+                />
 
-              <CheckboxCardField<FormSchemaType>
-                name="plan"
-                control={control}
-                value="pro"
-                label="Pro Plan"
-                description="Best for professionals"
-              />
+                <CheckboxCardField<FormSchemaType>
+                  name="plan"
+                  control={control}
+                  value="pro"
+                  label="Pro Plan"
+                  description="Best for professionals"
+                  error={errors.plan?.message}
+                />
+              </UIFormField>
 
               {/* ===== MULTI SELECT ===== */}
-              <CheckboxCardField<FormSchemaType>
-                name="features"
-                control={control}
-                value="analytics"
-                label="Analytics"
-                description="Advanced analytics features"
-              />
+              <UIFormField
+                label="Features"
+                error={errors.features?.message}
+                isRequired
+              >
+                <CheckboxCardField<FormSchemaType>
+                  name="features"
+                  control={control}
+                  value="analytics"
+                  label="Analytics"
+                  description="Advanced analytics features"
+                  error={errors.features?.message}
+                />
 
-              <CheckboxCardField<FormSchemaType>
-                name="features"
-                control={control}
-                value="priority-support"
-                label="Priority Support"
-                description="Get priority customer support"
-              />
+                <CheckboxCardField<FormSchemaType>
+                  name="features"
+                  control={control}
+                  value="priority-support"
+                  label="Priority Support"
+                  description="Get priority customer support"
+                  error={errors.features?.message}
+                />
+              </UIFormField>
             </div>
           </div>
 
           {/* SWITCH */}
-          <BaseSwitchInput<FormSchemaType>
-            label="Active Status"
-            name="isActive"
-            control={control}
+          <UIFormField
+            label="Status"
             error={errors.isActive?.message}
+            isRequired
             helperText="Aktifkan jika user boleh login"
-          />
+          >
+            <BaseSwitchInput<FormSchemaType>
+              name="isActive"
+              control={control}
+            />
+          </UIFormField>
 
           {/* TEXT AREA */}
           <div className="col-span-2">
-            <BaseTextArea
+            <UIFormField
               label="Description"
-              name="description"
-              placeholder="Deskripsi user (opsional)"
               error={errors.description?.message}
-              registration={register("description")}
-            />
+              isRequired
+            >
+              <BaseTextArea
+                name="description"
+                placeholder="Deskripsi user (opsional)"
+                registration={register("description")}
+              />
+            </UIFormField>
           </div>
 
           {/* RADIO */}
-          <BaseRadioGroup
+          <UIFormField
             label="Gender"
-            name="gender"
-            control={control}
-            options={genderOptions}
             error={errors.gender?.message}
-          />
+            isRequired
+          >
+            <BaseRadioGroup
+              name="gender"
+              control={control}
+              options={genderOptions}
+              error={errors.gender?.message}
+            />
+          </UIFormField>
 
           {/* RADIO CARD */}
           <div className="col-span-3">
-            <UIRadioCardGroupField<FormSchemaType>
-              name="billing"
-              control={control}
-              label="Siklus Penagihan"
-              required
-              items={billingItems}
-              orientation="horizontal"
-              colorPalette="blue"
-              variant="subtle"
+            <UIFormField
+              label="Billing"
               error={errors.billing?.message}
-            />
+              isRequired
+            >
+              <UIRadioCardGroupField<FormSchemaType>
+                name="billing"
+                control={control}
+                required
+                items={billingItems}
+                orientation="horizontal"
+                colorPalette="blue"
+                variant="subtle"
+                error={errors.gender?.message}
+              />
+            </UIFormField>
           </div>
 
           <div className="col-span-3">
-            <UIRadioCardGroupField<FormSchemaType>
-              name="region"
-              control={control}
-              label="Region Server"
-              helperText="Pilih region terdekat untuk latensi optimal"
-              required
-              items={regionItems}
-              orientation="horizontal"
-              colorPalette="blue"
-              variant="surface"
+            <UIFormField
+              label="Region"
               error={errors.region?.message}
-            />
+              isRequired
+            >
+              <UIRadioCardGroupField<FormSchemaType>
+                name="region"
+                control={control}
+                helperText="Pilih region terdekat untuk latensi optimal"
+                required
+                items={regionItems}
+                orientation="horizontal"
+                colorPalette="blue"
+                variant="surface"
+                error={errors.region?.message}
+              />
+            </UIFormField>
           </div>
 
           {/* SELECT */}
-          <BaseSelectInput
+          <UIFormField
             label="Role"
-            name="role"
-            control={control}
-            options={roleOptions}
             error={errors.role?.message}
-          />
+            isRequired
+          >
+            <BaseSelectInput
+              label="Role"
+              name="role"
+              control={control}
+              options={roleOptions}
+            />
+          </UIFormField>
 
           {/* DATEPICKER */}
-          <BaseDatePicker
-            name="birthdate"
-            control={control}
-            label="Tanggal Lahir"
+          <UIFormField
+            label="Birthdate"
             error={errors.birthdate?.message}
-            minDate={new Date(1900, 0, 1)}
-            maxDate={new Date()}
-            dateFormat="dd/MM/yyyy"
-          />
+            isRequired
+          >
+            <BaseDatePicker
+              name="birthdate"
+              control={control}
+              minDate={new Date(1900, 0, 1)}
+              maxDate={new Date()}
+              dateFormat="dd/MM/yyyy"
+              error={errors.birthdate?.message}
+            />
+          </UIFormField>
 
           {/* USER */}
-          <BaseAsyncSelect
-            name="user"
-            control={control}
-            label="Pilih User"
-            loadOptionsUrl="https://jsonplaceholder.typicode.com/users"
-            multiple
-            labelField={(item) => `${item.name} (${item.email})`} // bisa gabung field
-            valueField="id" // pakai id sebagai value
-            placeholder="Cari user..."
+          <UIFormField
+            label="User"
             error={errors.user?.message}
-          />
+            isRequired
+          >
+            <BaseAsyncSelect
+              name="user"
+              control={control}
+              loadOptionsUrl="https://jsonplaceholder.typicode.com/users"
+              multiple
+              labelField={(item) => `${item.name} (${item.email})`}
+              valueField="id"
+              placeholder="Cari user..."
+              error={errors.birthdate?.message}
+            />
+          </UIFormField>
+          
 
           {/* NUMBER */}
-          <BaseNumberInput
+          <UIFormField
             label="Age"
-            name="age"
             error={errors.age?.message}
-            registration={register("age")}
-          />
+            isRequired
+          >
+            <BaseNumberInput
+              name="age"
+              registration={register("age")}
+            />
+          </UIFormField>
 
           {/* FILE UPLOAD */}
-          <BaseFileUpload
-            name="avatar"
-            control={control}
+          <UIFormField
             label="Upload Dokumen"
-            isRequired
-            multiple
-            accept="image/*,application/pdf"
             helperText="Maks. 3 file — JPG, PNG atau PDF"
             error={errors.avatar?.message}
-          />
+            isRequired
+          >
+            <BaseFileUpload
+              name="avatar"
+              control={control}
+              isRequired
+              multiple
+              accept="image/*,application/pdf"
+            />
+          </UIFormField>
         </div>
 
         <Button
@@ -304,7 +387,7 @@ export default function DocFormValidation() {
         >
           Submit
         </Button>
-      </form>
+      </AppFormWrapper>
 
       {/* Debug: Tampilkan error di bawah form */}
       {Object.keys(errors).length > 0 && (

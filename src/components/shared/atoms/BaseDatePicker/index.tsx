@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, Control } from "react-hook-form";
-import { Text, Field, Input } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import type { ReactDatePickerCustomHeaderProps } from "react-datepicker";
@@ -95,24 +95,15 @@ const CustomHeader = ({
 export const BaseDatePicker: React.FC<BaseDatePickerProps> = ({
   name,
   control,
-  label,
   error,
-  helperText,
   placeholder = "Pilih tanggal",
-  isRequired = false,
   minDate,
   maxDate,
   disabled = false,
   dateFormat = "dd/MM/yyyy",
 }) => {
   return (
-    <Field.Root invalid={!!error}>
-      {label && (
-        <Text fontWeight="medium" fontSize="sm">
-          {label} {isRequired && <Text as="span" color="red.500">*</Text>}
-        </Text>
-      )}
-
+    <>
       <Controller
         name={name}
         control={control}
@@ -148,14 +139,6 @@ export const BaseDatePicker: React.FC<BaseDatePickerProps> = ({
           />
         )}
       />
-
-      {error ? (
-        <Text color="red.500" fontSize="sm" mt={1}>
-          {error}
-        </Text>
-      ) : helperText ? (
-        <Field.HelperText mt={1}>{helperText}</Field.HelperText>
-      ) : null}
-    </Field.Root>
+    </>
   );
 };

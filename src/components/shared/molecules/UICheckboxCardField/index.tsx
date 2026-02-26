@@ -6,17 +6,19 @@ interface CheckboxCardFieldProps<T extends FieldValues>
   name: Path<T>;
   control: Control<T>;
   value: string;
+  error?: any;
 }
 
 export function CheckboxCardField<T extends FieldValues>({
   name,
   control,
   value,
+  error,
   ...rest
 }: CheckboxCardFieldProps<T>) {
   const {
     field,
-    fieldState: { error },
+    fieldState: { },
   } = useController({ name, control });
 
   const checked = Array.isArray(field.value)
@@ -42,7 +44,7 @@ export function CheckboxCardField<T extends FieldValues>({
       {...rest}
       checked={checked}
       onChange={handleChange}
-      error={error?.message}
+      error={ error }
     />
   );
 }

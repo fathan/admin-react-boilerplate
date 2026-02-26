@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text, Input, Flex, Image } from "@chakra-ui/react";
+import { Box, Input, Flex, Image } from "@chakra-ui/react";
 import { Control, Controller } from "react-hook-form";
 
 interface BaseFileUploadProps {
@@ -17,10 +17,6 @@ interface BaseFileUploadProps {
 export const BaseFileUpload: React.FC<BaseFileUploadProps> = ({
   name,
   control,
-  label,
-  helperText,
-  error,
-  isRequired = false,
   multiple = false,
   accept,
   showPreview = false,
@@ -38,13 +34,7 @@ export const BaseFileUpload: React.FC<BaseFileUploadProps> = ({
   };
 
   return (
-    <Box mb={4}>
-      {label && (
-        <Text mb={1} fontWeight="medium" fontSize="sm">
-          {label} {isRequired && <Text as="span" color="red.500">*</Text>}
-        </Text>
-      )}
-
+    <>
       <Controller
         name={name}
         control={control}
@@ -68,18 +58,6 @@ export const BaseFileUpload: React.FC<BaseFileUploadProps> = ({
           </>
         )}
       />
-
-      {error && (
-        <Text color="red.500" fontSize="sm" mt={1}>
-          {error}
-        </Text>
-      )}
-
-      {helperText && !error && (
-        <Text fontSize="sm" color="gray.500" mt={1}>
-          {helperText}
-        </Text>
-      )}
-    </Box>
+    </>
   );
 };

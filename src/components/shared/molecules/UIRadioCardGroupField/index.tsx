@@ -1,5 +1,3 @@
-import { Field } from "@chakra-ui/react";
-
 import { Control, FieldValues, Path, useFormState, get, FieldError } from "react-hook-form";
 import { BaseRadioCardProps } from "@/components/shared/atoms/BaseRadioCard";
 import UIRadioCardGroup from "@/components/shared/molecules/UIRadioCardGroup";
@@ -48,15 +46,13 @@ export interface UIRadioCardGroupFieldProps<T extends FieldValues> {
 function UIRadioCardGroupField<T extends FieldValues>({
   name,
   control,
-  label,
-  helperText,
   items,
   orientation = "horizontal",
   colorPalette = "blue",
   variant = "outline",
   columns,
   className,
-  required = false,
+  error
 }: UIRadioCardGroupFieldProps<T>) {
   const { errors } = useFormState({ control, name });
 
@@ -66,14 +62,7 @@ function UIRadioCardGroupField<T extends FieldValues>({
   const isInvalid = !!errorMessage;
 
   return (
-    <Field.Root invalid={isInvalid} required={required}>
-      {label && (
-        <Field.Label>
-          {label}
-          {required && <Field.RequiredIndicator />}
-        </Field.Label>
-      )}
-
+    <>
       <UIRadioCardGroup<T>
         name={name}
         control={control}
@@ -83,16 +72,9 @@ function UIRadioCardGroupField<T extends FieldValues>({
         variant={variant}
         columns={columns}
         className={className}
+        error={ error }
       />
-
-      {helperText && !isInvalid && (
-        <Field.HelperText>{helperText}</Field.HelperText>
-      )}
-
-      {isInvalid && (
-        <Field.ErrorText>{errorMessage}</Field.ErrorText>
-      )}
-    </Field.Root>
+    </>
   );
 }
 

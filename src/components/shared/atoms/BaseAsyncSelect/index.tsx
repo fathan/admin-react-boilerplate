@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useRef, useCallback } from "react";
 import AsyncSelect from "react-select/async";
 import { components } from "react-select";
-import { Box, Text, Spinner, Flex } from "@chakra-ui/react";
+import { Box, Spinner, Flex } from "@chakra-ui/react";
 import axios, { AxiosRequestConfig } from "axios";
 import { Control, Controller } from "react-hook-form";
 
@@ -31,9 +31,6 @@ interface BaseAsyncSelectProps {
 export const BaseAsyncSelect: React.FC<BaseAsyncSelectProps> = ({
   name,
   control,
-  label,
-  error,
-  helperText,
   placeholder = "Select...",
   isClearable = true,
   multiple = false,
@@ -44,6 +41,7 @@ export const BaseAsyncSelect: React.FC<BaseAsyncSelectProps> = ({
   pageSize = 20,
   labelField = "name",
   valueField = "id",
+  error,
 }) => {
   const [options, setOptions] = useState<OptionType[]>([]);
   const [page, setPage] = useState(1);
@@ -145,12 +143,6 @@ export const BaseAsyncSelect: React.FC<BaseAsyncSelectProps> = ({
 
   return (
     <Box className="w-full">
-      {label && (
-        <Text mb={1} fontWeight="medium" fontSize="sm">
-          {label}
-        </Text>
-      )}
-
       <Controller
         name={name}
         control={control}
@@ -168,20 +160,11 @@ export const BaseAsyncSelect: React.FC<BaseAsyncSelectProps> = ({
               onMenuOpen={handleMenuOpen}
               components={{ MenuList }}
               classNamePrefix="chakra-async-select"
+              className={ `w-full ${error ? "border-red-500" : "border-gray-300"} focus:border-blue-400 focus:ring-blue-400` }
             />
           </>
         )}
       />
-
-      {error ? (
-        <Text color="red.500" fontSize="sm">
-          {error}
-        </Text>
-      ) : helperText ? (
-        <Text fontSize="sm" color="gray.500">
-          {helperText}
-        </Text>
-      ) : null}
     </Box>
   );
 };

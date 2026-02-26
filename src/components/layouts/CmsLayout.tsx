@@ -21,8 +21,8 @@ export default function CmsLayout() {
       <Sidebar />
 
       <div className="flex-1 ml-72">
-        <div className="fixed top-0 left-[18rem] right-0 m-8 pt-10 -mt-3 z-50 bg-white">
-          <div className="flex justify-between items-center px-6 py-3 h-16 bg-white dark:bg-[#1a1814] rounded-2xl border border-gray-200 dark:border-gray-600">
+        <div className="fixed top-0 left-[18rem] right-0 m-8 pt-10 -mt-3 z-50 bg-white dark:bg-[#12110e]">
+          <div className="flex justify-between items-center px-6 py-3 h-16 bg-white dark:bg-[#12110e] rounded-2xl border border-gray-200 dark:border-gray-600">
             <Text fontWeight="bold">CMS Dashboard</Text>
 
             <Flex align="center" gap="4">
@@ -80,7 +80,7 @@ export default function CmsLayout() {
         </div>
 
         {/* Main Content */}
-        <main className="pt-36 p-8 bg-white">
+        <main className="pt-36 p-8 bg-white dark:bg-[#12110e]">
           <Outlet />
         </main>
       </div>

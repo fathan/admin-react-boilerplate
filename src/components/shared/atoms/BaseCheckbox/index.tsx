@@ -1,7 +1,5 @@
 import {
-  Field,
   Checkbox,
-  Text
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import { useController, FieldValues, Path, Control } from "react-hook-form";
@@ -17,13 +15,9 @@ type BaseCheckboxProps<T extends FieldValues> = {
 };
 
 export function BaseCheckbox<T extends FieldValues>({
-  label,
   labelSecondary,
   name,
   control,
-  error,
-  helperText,
-  isRequired = false,
 }: BaseCheckboxProps<T>) {
 
   const { field } = useController({
@@ -32,18 +26,7 @@ export function BaseCheckbox<T extends FieldValues>({
   });
 
   return (
-    <Field.Root invalid={!!error}>
-      {label && (
-        <Field.Label>
-          {label}
-          {isRequired && (
-            <Text as="span" color="red.500">
-              *
-            </Text>
-          )}
-        </Field.Label>
-      )}
-
+    <>
       <Checkbox.Root
         checked={!!field.value}
         onCheckedChange={(e) => field.onChange(!!e.checked)}
@@ -52,14 +35,6 @@ export function BaseCheckbox<T extends FieldValues>({
         <Checkbox.Control />
         <Checkbox.Label>{labelSecondary}</Checkbox.Label>
       </Checkbox.Root>
-
-      {error ? (
-        <Text color="red.500" fontSize="sm">
-          {error}
-        </Text>
-      ) : helperText ? (
-        <Field.HelperText>{helperText}</Field.HelperText>
-      ) : null}
-    </Field.Root>
+    </>
   );
 }
