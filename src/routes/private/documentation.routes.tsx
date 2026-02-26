@@ -52,6 +52,8 @@ import DocIntegrationApi from "@/pages/cms/Documentation/components/IntegrationA
 import DocIntegrationApiList from "@/pages/cms/Documentation/components/IntegrationApi/List";
 import DocIntegrationApiCreate from "@/pages/cms/Documentation/components/IntegrationApi/Create";
 import DocIntegrationApiUpdate from "@/pages/cms/Documentation/components/IntegrationApi/Update";
+import DocIntegrationApiSendJsonData from "@/pages/cms/Documentation/components/IntegrationApi/SendJsonData";
+import DocIntegrationApiSendFormData from "@/pages/cms/Documentation/components/IntegrationApi/SendFormData";
 
 export const documentationRoutes = {
   path: "documentations",
@@ -107,6 +109,14 @@ export const documentationRoutes = {
         {
           path: "update",
           element: <DocIntegrationApiUpdate />
+        },
+        {
+          path: "send-form-data",
+          element: <DocIntegrationApiSendFormData />
+        },
+        {
+          path: "send-json-data",
+          element: <DocIntegrationApiSendJsonData />
         }
       ]
     },

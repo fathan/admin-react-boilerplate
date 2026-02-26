@@ -4,9 +4,8 @@ import { formSchema, FormSchemaType } from "./formSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useCreateUser } from "@/hooks/users/useCreateUser";
-import { Toaster } from "@/components/ui/toaster";
 
-const DocIntegrationApiCreate = () => {
+const DocIntegrationApiSendFormData = () => {
   const { mutate } = useCreateUser();
 
   const defaultValues: FormSchemaType = {
@@ -32,21 +31,17 @@ const DocIntegrationApiCreate = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("name")} type="hidden" />
-        <input {...register("email")} type="hidden" />
-        <input {...register("password")} type="hidden" />
-        <input {...register("role")} type="hidden" />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("name")} type="hidden" />
+      <input {...register("email")} type="hidden" />
+      <input {...register("password")} type="hidden" />
+      <input {...register("role")} type="hidden" />
 
-        <Button type="submit">
-          Send JSON Data
-        </Button>
-      </form>
-
-      <Toaster />
-    </>
+      <Button type="submit">
+        Send Form Data
+      </Button>
+    </form>
   );
 }
 
-export default DocIntegrationApiCreate;
+export default DocIntegrationApiSendFormData;

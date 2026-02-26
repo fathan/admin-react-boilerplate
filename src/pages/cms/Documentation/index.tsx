@@ -57,6 +57,14 @@ const menus: MenuItem[] = [
         label: "Update",
         path: "integration-api/update",
       },
+      {
+        label: "Send Form Data",
+        path: "integration-api/send-form-data",
+      },
+      {
+        label: "Send Json Data",
+        path: "integration-api/send-json-data",
+      },
     ],
   },
   {

@@ -1,3 +1,4 @@
+import { objectToFormData } from "@/utils/global.utils";
 import { api } from "./api";
 import {
   GetUsersParams,
@@ -20,6 +21,24 @@ export const userService = {
   async createUser(payload: CreateUserPayload) {
     try {
       const response = await api.post("/cms/users", payload);
+      return response.data;
+    }
+    catch (error) {
+      throw error;
+    }
+  },
+
+  async createUserFormData(payload: CreateUserPayload) {
+    try {
+      const bodyData = objectToFormData(payload);
+
+      const response = await api.post(
+        "/cms/users",
+        bodyData,
+        {
+          headers: { "Content-Type": "multipart/form-data" }
+        }
+      );
       return response.data;
     }
     catch (error) {
