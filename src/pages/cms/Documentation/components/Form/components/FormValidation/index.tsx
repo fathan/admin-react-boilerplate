@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Box } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckIcon } from "lucide-react";
+import { Calendar, CheckIcon, Gift } from "lucide-react";
 
 import { formSchema, FormSchemaType } from "./formSchema";
 
@@ -23,6 +23,7 @@ import UIFormField from "@/components/shared/molecules/UIFormField";
 import UIFormActions from "@/components/shared/molecules/UIFormActions";
 import UIDebugErrorRHF from "@/components/shared/molecules/UIDebugErrorRHF";
 import UIFileUploadZone from "@/components/shared/molecules/UIFileUploadZone";
+import { BasePasswordInput } from "@/components/shared/atoms/BasePasswordInput";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -52,13 +53,13 @@ export default function DocFormValidation() {
       value: "monthly",
       label: "Bulanan",
       description: "Bayar tiap bulan",
-      icon: <span>📅</span>,
+      icon: <Calendar size={24} />,
     },
     {
       value: "yearly",
       label: "Tahunan",
       description: "Hemat 20%",
-      icon: <span>🎁</span>,
+      icon: <Gift size={24} />,
     },
   ];
 
@@ -150,10 +151,9 @@ export default function DocFormValidation() {
             error={errors.password?.message}
             isRequired
           >
-            <BaseTextInput
+            <BasePasswordInput
               name="password"
               type="password"
-              isRequired
               registration={register("password")}
             />
           </UIFormField>
@@ -283,7 +283,7 @@ export default function DocFormValidation() {
                 orientation="horizontal"
                 colorPalette="blue"
                 variant="subtle"
-                error={errors.gender?.message}
+                error={errors.billing?.message}
               />
             </UIFormField>
           </div>

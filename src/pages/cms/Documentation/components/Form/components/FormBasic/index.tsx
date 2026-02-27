@@ -5,6 +5,7 @@ import { BaseTextInput } from "@/components/shared/atoms/BaseTextInput";
 import { formSchema, FormSchemaType } from "./formSchema";
 import { Box, Button } from "@chakra-ui/react";
 import { BaseCheckbox } from "@/components/shared/atoms/BaseCheckbox";
+import { BasePasswordInput } from "@/components/shared/atoms/BasePasswordInput";
 
 const DocFormBasic = () => {
   // const genderOptions = useMemo(
@@ -35,7 +36,7 @@ const DocFormBasic = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -47,7 +48,7 @@ const DocFormBasic = () => {
 
   return (
     <Box as="form" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4">
         <div>
           <BaseTextInput
             label="Name"
@@ -65,12 +66,11 @@ const DocFormBasic = () => {
             type="email"
             placeholder="Your Email"
             registration={register("email")}
-            error={errors.email?.message}
           />
         </div>
 
         <div>
-          <BaseTextInput
+          <BasePasswordInput
             label="Password"
             name="password"
             type="password"

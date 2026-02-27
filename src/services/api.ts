@@ -22,9 +22,23 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response.data.message === 'Unauthenticated.') {
+    if (!error.response) {
+      return Promise.reject({
+        message: "Network error. Please check your connection.",
+        status: 0,
+      });
+    }
+
+    const { status, data } = error.response;
+
+    if (status === 401) {
       useAuthStore.getState().logout();
     }
-    return Promise.reject(error);
+
+    return Promise.reject({
+      message: data?.message || "Something went wrong",
+      status,
+      errors: data?.errors || null,
+    });
   }
 );

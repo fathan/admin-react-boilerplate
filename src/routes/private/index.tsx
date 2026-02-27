@@ -10,6 +10,8 @@ import { usersRoutes } from "./users.routes";
 import { postsRoutes } from "./posts.routes";
 import { pagesRoutes } from "./pages.routes";
 import { rolesRoutes } from "./roles.routes";
+import { commentsRoutes } from "./comments.routes";
+import { categoriesRoutes } from "./categories.routes";
 
 export const privateRoutes = {
   element: <GuestRoute />,
@@ -27,7 +29,9 @@ export const privateRoutes = {
         usersRoutes,
         postsRoutes,
         pagesRoutes,
-        rolesRoutes
+        rolesRoutes,
+        categoriesRoutes,
+        commentsRoutes,
       ]
     }
   ]
