@@ -84,26 +84,6 @@ export const navGroups: NavGroup[] = [
     ],
   },
   {
-    title: '',
-    items: [
-      {
-        icon: MessageCircle,
-        label: 'Comments',
-        path: '/comments',
-      },
-    ],
-  },
-  {
-    title: '',
-    items: [
-      {
-        icon: Folder,
-        label: 'Media',
-        path: '/media',
-      },
-    ],
-  },
-  {
     title: 'User Management',
     items: [
       {
@@ -130,6 +110,21 @@ export const navGroups: NavGroup[] = [
             roles: ['superadmin'],
           },
         ],
+      },
+    ],
+  },
+  {
+    title: 'Other',
+    items: [
+      {
+        icon: MessageCircle,
+        label: 'Comments',
+        path: '/comments',
+      },
+      {
+        icon: Folder,
+        label: 'Media',
+        path: '/media',
       },
     ],
   },

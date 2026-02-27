@@ -1,3 +1,4 @@
+import { UploadedFile } from "@/components/shared/molecules/UIFileUploadZone";
 import { z } from "zod";
 
 const BILLING_VALUES = ["monthly", "yearly"] as const;
@@ -55,6 +56,7 @@ export const formSchema = z.object({
   }),
   features: z.array(z.string()).min(1, "Select at least one feature"),
   rate: z.string().min(1, "Rate wajib diisi"),
+  images: z.array(z.custom<UploadedFile>()).min(1, 'Upload at least 1 image'),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

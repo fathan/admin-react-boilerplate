@@ -76,7 +76,7 @@ const ChildMenu = ({ children, userRole, isOpen }: ChildMenuProps) => {
                   `flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
                     isActive
                       ? 'text-digital-blue-600 bg-digital-blue-50 dark:bg-digital-blue-500/15 dark:text-digital-blue-300 font-medium'
-                      : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5'
+                      : 'text-gray-500 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5'
                   }`
                 }
               >
@@ -120,7 +120,7 @@ const NavItemRow = ({ item, userRole }: NavItemRowProps) => {
           className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 ${
             anyChildActive
               ? 'text-digital-blue-500 bg-digital-blue-50 dark:bg-digital-blue-500/10'
-              : 'text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 dark:text-gray-500'
+              : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 dark:text-gray-500'
           }`}
         >
           <Icon className="w-5 h-5 shrink-0" />
@@ -149,7 +149,7 @@ const NavItemRow = ({ item, userRole }: NavItemRowProps) => {
           `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors duration-200 text-sm font-medium ${
             isActive
               ? 'text-digital-blue-500 bg-digital-blue-100 dark:bg-digital-blue-500/15'
-              : 'text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5 dark:text-gray-500'
+              : 'text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 dark:text-gray-500'
           }`
         }
       >
@@ -198,9 +198,9 @@ const Sidebar = () => {
           if (!visibleItems.length) return null;
 
           return (
-            <div key={gi}>
+            <div key={gi} className="space-y-1.5">
               {group.title && (
-                <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-gray-300 dark:text-gray-600 select-none">
+                <p className="px-3 mb-1.5 text-[12px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-600 select-none">
                   {group.title}
                 </p>
               )}

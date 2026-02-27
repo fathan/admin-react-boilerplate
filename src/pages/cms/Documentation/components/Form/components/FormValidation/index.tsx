@@ -22,6 +22,7 @@ import { AppFormWrapper } from "@/components/shared/organisms/AppFormWrapper";
 import UIFormField from "@/components/shared/molecules/UIFormField";
 import UIFormActions from "@/components/shared/molecules/UIFormActions";
 import UIDebugErrorRHF from "@/components/shared/molecules/UIDebugErrorRHF";
+import UIFileUploadZone from "@/components/shared/molecules/UIFileUploadZone";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -85,6 +86,7 @@ export default function DocFormValidation() {
     features: [],
     billing: undefined,
     region: undefined,
+    images: [],
   } as unknown as FormSchemaType;
 
   /* ================= FORM ================= */
@@ -93,6 +95,7 @@ export default function DocFormValidation() {
     register,
     control,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -381,6 +384,21 @@ export default function DocFormValidation() {
               accept="image/*,application/pdf"
             />
           </UIFormField>
+          
+          {/* FILE UPLOAD ZONE */}
+          <div className="col-span-3">
+            <UIFormField
+              label="File Upload Zone"
+              error={errors.images?.message}
+              isRequired
+            >
+              <UIFileUploadZone
+                variant="wide"
+                multiple
+                onChange={(files: any) => setValue('images', files, { shouldValidate: true })}
+              />
+            </UIFormField>
+          </div>
         </div>
 
         <UIFormActions
