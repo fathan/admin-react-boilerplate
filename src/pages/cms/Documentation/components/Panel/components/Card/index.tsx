@@ -1,4 +1,5 @@
 import BaseCard from "@/components/shared/atoms/BaseCard";
+import { Button } from "@chakra-ui/react";
 
 export default function DocPanelCard() {
   return (
@@ -10,8 +11,6 @@ export default function DocPanelCard() {
         onClick={() => console.log("Card clicked")}
       >
         <BaseCard.Header
-          image={<img src="https://i.pravatar.cc/150?img=3" className="w-10 h-10 rounded-full" />}
-          badge={<span className="px-2 py-1 text-xs bg-blue-500 text-white rounded-full">NEW</span>}
           closable
           onClose={() => console.log("Card closed")}
         >
@@ -25,8 +24,8 @@ export default function DocPanelCard() {
         </BaseCard.Body>
 
         <BaseCard.Footer justify="between">
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">Action 1</button>
-          <button className="px-3 py-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white rounded">Action 2</button>
+          <Button>Action 1</Button>
+          <Button colorPalette="red">Action 2</Button>
         </BaseCard.Footer>
       </BaseCard>
 
@@ -52,8 +51,8 @@ export default function DocPanelCard() {
         </BaseCard.Body>
 
         <BaseCard.Footer justify="between">
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">Action 1</button>
-          <button className="px-3 py-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white rounded">Action 2</button>
+          <Button>Action 1</Button>
+          <Button colorPalette="red">Action 2</Button>
         </BaseCard.Footer>
       </BaseCard>
 
@@ -78,8 +77,8 @@ export default function DocPanelCard() {
         </BaseCard.Body>
 
         <BaseCard.Footer justify="center" className="gap-4">
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">Action 1</button>
-          <button className="px-3 py-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white rounded">Action 2</button>
+          <Button>Action 1</Button>
+          <Button colorPalette="red">Action 2</Button>
         </BaseCard.Footer>
       </BaseCard>
 
@@ -104,8 +103,8 @@ export default function DocPanelCard() {
         </BaseCard.Body>
 
         <BaseCard.Footer justify="between">
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">Action 1</button>
-          <button className="px-3 py-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white rounded">Action 2</button>
+          <Button>Action 1</Button>
+          <Button colorPalette="red">Action 2</Button>
         </BaseCard.Footer>
       </BaseCard>
     </div>

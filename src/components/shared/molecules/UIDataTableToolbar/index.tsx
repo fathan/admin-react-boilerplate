@@ -4,9 +4,10 @@ import { Table } from "@tanstack/react-table";
 
 import { DataTableColumnDef } from "@/types/datatable.types";
 
-import BaseTablePerPage from "@/components/shared/atoms/BaseTablePerPage";
+// import BaseTablePerPage from "@/components/shared/atoms/BaseTablePerPage";
 import BaseTableSearchInput from "@/components/shared/atoms/BaseTableSearchInput";
 import { LuDownload } from "react-icons/lu";
+import { Columns } from "lucide-react";
 
 interface UIDataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -27,6 +28,8 @@ interface UIDataTableToolbarProps<TData> {
   totalCount: number;
   selectedCount: number;
   onClearSelection?: () => void;
+  leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
 }
 
 function UIDataTableToolbar<TData>({
@@ -42,10 +45,12 @@ function UIDataTableToolbar<TData>({
   exportPdf,
   onExportCsv,
   onExportPdf,
-  pagination,
-  pageSizeOptions = [10, 25, 50, 100],
-  totalCount,
+  // pagination,
+  // pageSizeOptions = [10, 25, 50, 100],
+  // totalCount,
   selectedCount,
+  leftContent,
+  rightContent,
   onClearSelection,
 }: UIDataTableToolbarProps<TData>) {
   const [columnToggleOpen, setColumnToggleOpen] = useState(false);
@@ -62,12 +67,14 @@ function UIDataTableToolbar<TData>({
   return (
     <div className="space-y-3">
       {/* Title & Description */}
-      {(title || description) && (
-        <div>
-          {title && <h2 className="text-base font-semibold text-gray-800">{title}</h2>}
-          {description && <p className="text-sm text-gray-500 mt-0.5">{description}</p>}
-        </div>
-      )}
+      <div className="mb-7">
+        {(title || description) && (
+          <div>
+            {title && <h2 className="text-base font-semibold text-gray-800">{title}</h2>}
+            {description && <p className="text-sm text-gray-500 mt-0.5">{description}</p>}
+          </div>
+        )}
+      </div>
 
       {/* Toolbar Row */}
       <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -99,31 +106,52 @@ function UIDataTableToolbar<TData>({
               </button>
             </div>
           )}
+
+          {leftContent}
         </div>
 
         {/* Right: per page + column toggle + export */}
         <div className="flex items-center gap-2">
-          {pagination && (
+          {/* {pagination && (
             <BaseTablePerPage
               value={table.getState().pagination.pageSize}
               options={pageSizeOptions}
               onChange={(size) => table.setPageSize(size)}
               totalCount={totalCount}
             />
-          )}
+          )} */}
+          {rightContent}
 
-          {/* Column Toggle */}
+          <Menu.Root>
+            <Menu.Trigger asChild>
+              <Button variant="subtle" colorPalette="blue">
+                <LuDownload className="mr-2" />
+                Export
+              </Button>
+            </Menu.Trigger>
+            <Portal>
+              <Menu.Positioner>
+                <Menu.Content>
+                  <Menu.ItemGroup>
+                    <Menu.ItemGroupLabel>Export</Menu.ItemGroupLabel>
+                    {exportCsv && (<Menu.Item value="csv" onClick={onExportCsv}>CSV</Menu.Item>)}
+                    {exportPdf && (<Menu.Item value="pdf" onClick={onExportPdf}>PDF</Menu.Item>)}
+                  </Menu.ItemGroup>
+                </Menu.Content>
+              </Menu.Positioner>
+            </Portal>
+          </Menu.Root>
+
+           {/* Column Toggle */}
           {columnToggle && (
             <div className="relative" ref={toggleRef}>
-              <button
+              <Button
                 onClick={() => setColumnToggleOpen((v) => !v)}
-                className="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-sm hover:bg-gray-50 transition-colors"
               >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                </svg>
+                <Columns className="w-4 h-4" />
                 Columns
-              </button>
+              </Button>
 
               {columnToggleOpen && (
                 <>
@@ -168,26 +196,6 @@ function UIDataTableToolbar<TData>({
               )}
             </div>
           )}
-
-          <Menu.Root>
-            <Menu.Trigger asChild>
-              <Button variant="outline">
-                <LuDownload className="mr-2" />
-                Export
-              </Button>
-            </Menu.Trigger>
-            <Portal>
-              <Menu.Positioner>
-                <Menu.Content>
-                  <Menu.ItemGroup>
-                    <Menu.ItemGroupLabel>Export</Menu.ItemGroupLabel>
-                    {exportCsv && (<Menu.Item value="csv" onClick={onExportCsv}>CSV</Menu.Item>)}
-                    {exportPdf && (<Menu.Item value="pdf" onClick={onExportPdf}>PDF</Menu.Item>)}
-                  </Menu.ItemGroup>
-                </Menu.Content>
-              </Menu.Positioner>
-            </Portal>
-          </Menu.Root>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@chakra-ui/react"
 import { useTheme } from "next-themes"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Moon, Sun } from "lucide-react"
 import UILanguageSwitcher from "@/components/shared/molecules/UILanguageSwitcher"
 import UIBreadcrumbs from "../shared/molecules/UIBreadcrumbs"
 import { useAuthStore } from "@/stores/authStore"
@@ -52,7 +52,7 @@ export default function CmsLayout() {
               {/* Dark Mode Switch */}
               <Flex align="center" gap="2">
                 <Text fontSize="sm">
-                  {theme === "dark" ? "Dark" : "Light"}
+                  {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
                 </Text>
                 <Switch.Root
                   checked={theme === "dark"}

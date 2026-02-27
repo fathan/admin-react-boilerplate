@@ -24,8 +24,12 @@ const UILanguageSwitcher: React.FC = () => {
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span className="text-base leading-none">{currentOption.flag}</span>
-        <span className="font-medium">{currentOption.label}</span>
+        {/* <span className="text-base leading-none">
+          {currentOption.flag}
+        </span> */}
+        <span className="font-medium">
+          {currentOption.label}
+        </span>
         <svg
           className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
@@ -61,7 +65,7 @@ const UILanguageSwitcher: React.FC = () => {
                   }
                 `}
               >
-                <span className="text-base leading-none">{lang.flag}</span>
+                {/* <span className="text-base leading-none">{lang.flag}</span> */}
                 <span>{lang.label}</span>
                 {isActive(lang.code) && (
                   <svg

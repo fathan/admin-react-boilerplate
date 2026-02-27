@@ -86,8 +86,8 @@ const rowActions: RowAction<User>[] = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsUsersList() {
-  usePageTitle("Users");
+export default function CmsPostsList() {
+  usePageTitle("Posts");
 
   const [params, setParams] = useState<ServerSideParams>({
     page: 1,

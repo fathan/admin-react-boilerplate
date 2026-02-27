@@ -99,7 +99,7 @@ export const navGroups: NavGroup[] = [
           },
           {
             label: 'Roles & Permissions',
-            path: '/users/roles',
+            path: '/roles',
             icon: Shield,
             roles: ['superadmin'],
           },

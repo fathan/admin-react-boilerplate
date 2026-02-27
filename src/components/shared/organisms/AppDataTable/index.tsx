@@ -63,6 +63,8 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
     emptyState,
     className,
     onRowClick,
+    leftToolbarContent,
+    rightToolbarContent,
   } = props;
 
   const {
@@ -104,6 +106,8 @@ function AppDataTable<TData extends object>(props: AppDataTableProps<TData>) {
           totalCount={totalCount}
           selectedCount={selectedCount}
           onClearSelection={() => table.resetRowSelection()}
+          leftContent={leftToolbarContent}
+          rightContent={rightToolbarContent}
         />
       )}
 

@@ -117,4 +117,7 @@ export interface AppDataTableProps<TData extends object> {
   initialSorting?: SortingState;
   initialColumnVisibility?: VisibilityState;
   initialSearch?: string;
+
+  leftToolbarContent?: React.ReactNode;
+  rightToolbarContent?: React.ReactNode;
 }

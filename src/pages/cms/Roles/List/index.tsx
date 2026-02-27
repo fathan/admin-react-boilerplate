@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Edit, Trash } from "lucide-react";
+import { Edit, PlusCircle, Trash } from "lucide-react";
 
 import { createColumns } from "@/types/createColumns";
 import { RowAction, ServerSideParams } from "@/types/datatable.types";
@@ -9,6 +9,7 @@ import { useUsers } from "@/hooks/api/users";
 import { usePageTitle } from "@/hooks/shared/usePageTitle";
 
 import AppDataTable from "@/components/shared/organisms/AppDataTable";
+import { Button } from "@chakra-ui/react";
 
 
 // ─── Columns ──────────────────────────────────────────────────────────────────
@@ -86,8 +87,8 @@ const rowActions: RowAction<User>[] = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsPagesList() {
-  usePageTitle("Pages");
+export default function CmsRolesList() {
+  usePageTitle("Roles & Permissions");
 
   const [params, setParams] = useState<ServerSideParams>({
     page: 1,
@@ -104,9 +105,12 @@ export default function CmsPagesList() {
 
   return (
     <>
+
+
       <div className="bg-white dark:bg-[#12110e] rounded-2xl p-6 shadow-sm border border-gray-100">
         <AppDataTable<User>
-          title=""
+          title="Total users with their roles"
+          description="Find all of your company’s administrator accounts and their associate roles."
           data={data?.data.data ?? []}
           totalRows={data?.data.meta.total ?? 0}
           loading={isLoading || isFetching}
@@ -130,6 +134,18 @@ export default function CmsPagesList() {
           maxVisibleRowActions={2}
           highlightOnHover
           onRowSelect={(rows) => console.log("Selected:", rows)}
+          leftToolbarContent={
+            <Button colorPalette="red">
+              <Trash size={14} strokeWidth={2} className="w-4 h-4 mr-2" />
+              Delete
+            </Button>
+          }
+          rightToolbarContent={
+            <Button variant="solid" colorPalette="blue">
+              <PlusCircle size={14} strokeWidth={2} className="w-4 h-4 mr-2" />
+              Add User
+            </Button>
+          }
         />
       </div>
     </>
