@@ -15,6 +15,7 @@ import { Send } from 'lucide-react';
 import { toaster, Toaster } from '@/components/ui/toaster';
 import { useLogin } from '@/hooks/api/auth';
 import { sleep } from '@/utils/global.utils';
+import { useEffect } from 'react';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -64,6 +65,10 @@ export default function Login() {
       password: data.password,
     });
   };
+
+  useEffect(() => {
+    console.log(import.meta.env.MODE);
+  });
 
   return (
     <>
