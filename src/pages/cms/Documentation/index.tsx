@@ -272,7 +272,7 @@ export default function Documentation() {
                 node.children ? (
                   <TreeView.BranchControl>
                     <LuFolder />
-                    <TreeView.BranchText>
+                    <TreeView.BranchText className="text-red-500 font-bold">
                       {node.name}
                     </TreeView.BranchText>
                   </TreeView.BranchControl>

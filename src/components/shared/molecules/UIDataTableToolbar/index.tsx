@@ -67,14 +67,12 @@ function UIDataTableToolbar<TData>({
   return (
     <div className="space-y-3">
       {/* Title & Description */}
-      <div className="mb-7">
-        {(title || description) && (
-          <div>
-            {title && <h2 className="text-base font-semibold text-gray-800">{title}</h2>}
-            {description && <p className="text-sm text-gray-500 mt-0.5">{description}</p>}
-          </div>
-        )}
-      </div>
+      {(title || description) && (
+        <div className="mb-7">
+          {title && <h2 className="text-base font-semibold text-gray-800">{title}</h2>}
+          {description && <p className="text-sm text-gray-500 mt-0.5">{description}</p>}
+        </div>
+      )}
 
       {/* Toolbar Row */}
       <div className="flex items-center justify-between gap-3 flex-wrap">

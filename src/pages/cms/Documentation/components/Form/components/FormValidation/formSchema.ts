@@ -55,7 +55,7 @@ export const formSchema = z.object({
     error: () => ({ message: "Pilih region server" }),
   }),
   features: z.array(z.string()).min(1, "Select at least one feature"),
-  rate: z.string().min(1, "Rate wajib diisi"),
+  rate: z.number().min(1, "Rate wajib diisi"),
   images: z.array(z.custom<UploadedFile>()).min(1, 'Upload at least 1 image'),
 });
 

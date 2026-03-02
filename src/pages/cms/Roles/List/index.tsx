@@ -105,12 +105,8 @@ export default function CmsRolesList() {
 
   return (
     <>
-
-
       <div className="bg-white dark:bg-[#12110e] rounded-2xl p-6 shadow-sm border border-gray-100">
         <AppDataTable<User>
-          title="Total users with their roles"
-          description="Find all of your company’s administrator accounts and their associate roles."
           data={data?.data.data ?? []}
           totalRows={data?.data.meta.total ?? 0}
           loading={isLoading || isFetching}

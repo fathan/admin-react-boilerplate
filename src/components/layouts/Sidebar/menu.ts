@@ -106,7 +106,7 @@ export const navGroups: NavGroup[] = [
           {
             icon: Users2,
             label: 'Visitor',
-            path: '/visitor',
+            path: '/visitors',
             roles: ['superadmin'],
           },
         ],
@@ -134,7 +134,7 @@ export const navGroups: NavGroup[] = [
       {
         icon: Menu,
         label: 'Menu',
-        path: '/menu',
+        path: '/menus',
         roles: ['superadmin'],
       },
       {

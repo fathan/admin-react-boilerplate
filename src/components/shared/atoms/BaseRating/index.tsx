@@ -1,34 +1,39 @@
 import { RatingGroup } from "@chakra-ui/react";
-import { UseFormRegisterReturn } from "react-hook-form";
+import { Controller, Control } from "react-hook-form";
 
 type BaseRatingProps = {
   name: string;
-  count: number;
-  defaultValue: number;
-  size: "xs" | "sm" | "md" | "lg";
-   registration?: UseFormRegisterReturn;
+  control: Control<any>;
+  count?: number;
+  defaultValue?: number;
+  size?: "xs" | "sm" | "md" | "lg";
 };
 
 const BaseRating = ({
   name,
-  count,
-  defaultValue,
-  size,
-  registration,
+  control,
+  count = 5,
+  defaultValue = 0,
+  size = "md",
 }: BaseRatingProps) => {
   return (
-    <>
-      <RatingGroup.Root
-        name={name}
-        count={count}
-        defaultValue={defaultValue}
-        size={size}
-        {...registration}
-      >
-        <RatingGroup.HiddenInput />
-        <RatingGroup.Control />
-      </RatingGroup.Root>
-    </>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <RatingGroup.Root
+          name={field.name}
+          count={count}
+          value={Number(field.value) || defaultValue}
+          onValueChange={({ value }) => field.onChange(value)}
+          onBlur={field.onBlur}
+          size={size}
+        >
+          <RatingGroup.HiddenInput />
+          <RatingGroup.Control />
+        </RatingGroup.Root>
+      )}
+    />
   );
 };
 

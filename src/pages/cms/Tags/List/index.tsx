@@ -31,36 +31,6 @@ const columns = createColumns<User>({
     header: "Email",
     cell: (info) => <span className="text-gray-500 text-sm">{info.getValue()}</span>,
   },
-  // role: {
-  //   header: "Role",
-  //   cell: (info) => {
-  //     const role = info.getValue() as string;
-  //     const colors: Record<string, string> = {
-  //       admin: "bg-purple-100 text-purple-700",
-  //       editor: "bg-blue-100 text-blue-700",
-  //       viewer: "bg-gray-100 text-gray-600",
-  //     };
-  //     return (
-  //       <span className={`px-2 py-0.5 rounded-md text-xs font-medium capitalize ${colors[role]}`}>
-  //         {role}
-  //       </span>
-  //     );
-  //   },
-  // },
-  // status: {
-  //   header: "Status",
-  //   cell: (info) => {
-  //     const active = info.getValue() === "active";
-  //     return (
-  //       <div className="flex items-center gap-1.5">
-  //         <span className={`w-1.5 h-1.5 rounded-full ${active ? "bg-green-500" : "bg-gray-300"}`} />
-  //         <span className={`text-xs font-medium capitalize ${active ? "text-green-700" : "text-gray-400"}`}>
-  //           {info.getValue()}
-  //         </span>
-  //       </div>
-  //     );
-  //   },
-  // },
 });
 
 // ─── Row Actions ──────────────────────────────────────────────────────────────
@@ -87,8 +57,8 @@ const rowActions: RowAction<User>[] = [
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function CmsRolesList() {
-  usePageTitle("Comments");
+export default function CmsTagsList() {
+  usePageTitle("Tags");
 
   const [params, setParams] = useState<ServerSideParams>({
     page: 1,

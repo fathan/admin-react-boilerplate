@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 
 import CmsLayout from "@/components/layouts/CmsLayout";
-import GuestRoute from "../guards/GuestRoute";
-// import ProtectedRoute from "../guards/ProtectedRoute";
+// import GuestRoute from "../guards/GuestRoute";
+import ProtectedRoute from "../guards/ProtectedRoute";
 
 import { dashboardRoutes } from "./dashboard.routes";
 import { documentationRoutes } from "./documentation.routes";
@@ -12,9 +12,13 @@ import { pagesRoutes } from "./pages.routes";
 import { rolesRoutes } from "./roles.routes";
 import { commentsRoutes } from "./comments.routes";
 import { categoriesRoutes } from "./categories.routes";
+import { tagsRoutes } from "./tags.routes";
+import { mediasRoutes } from "./media.routes";
+import { menusRoutes } from "./menus.routes";
+import { visitorsRoutes } from "./visitors.routes";
 
 export const privateRoutes = {
-  element: <GuestRoute />,
+  element: <ProtectedRoute />,
   children: [
     {
       path: "/",
@@ -29,9 +33,13 @@ export const privateRoutes = {
         usersRoutes,
         postsRoutes,
         pagesRoutes,
+        tagsRoutes,
         rolesRoutes,
         categoriesRoutes,
         commentsRoutes,
+        mediasRoutes,
+        menusRoutes,
+        visitorsRoutes
       ]
     }
   ]

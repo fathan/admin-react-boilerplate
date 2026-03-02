@@ -24,6 +24,7 @@ import UIFormActions from "@/components/shared/molecules/UIFormActions";
 import UIDebugErrorRHF from "@/components/shared/molecules/UIDebugErrorRHF";
 import UIFileUploadZone from "@/components/shared/molecules/UIFileUploadZone";
 import { BasePasswordInput } from "@/components/shared/atoms/BasePasswordInput";
+import BaseRating from "@/components/shared/atoms/BaseRating";
 
 export default function DocFormValidation() {
   /* ================= OPTIONS ================= */
@@ -87,6 +88,7 @@ export default function DocFormValidation() {
     features: [],
     billing: undefined,
     region: undefined,
+    rate: 0,
     images: [],
   } as unknown as FormSchemaType;
 
@@ -382,6 +384,18 @@ export default function DocFormValidation() {
               isRequired
               multiple
               accept="image/*,application/pdf"
+            />
+          </UIFormField>
+
+          {/* RATING INPUT */}
+          <UIFormField
+            label="Rating"
+            error={errors.rate?.message}
+            isRequired
+          >
+            <BaseRating
+              name="rate"
+              control={control}
             />
           </UIFormField>
           
