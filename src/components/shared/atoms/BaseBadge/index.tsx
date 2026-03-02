@@ -45,8 +45,8 @@ const BaseBadge: FC<BaseBadgeProps> & {
    Compound Slot: Icon
 -------------------------------------------------- */
 
-BaseBadge.Icon = ({ children, className = "" }) => (
-  <span className={`inline-flex items-center ${className}`}>{children}</span>
+BaseBadge.Icon = ({ children, className = "", ...rest }) => (
+  <span className={`inline-flex items-center ${className}`} {...rest}>{children}</span>
 );
 
 export default BaseBadge;
