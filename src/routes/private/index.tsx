@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 
 import CmsLayout from "@/components/layouts/CmsLayout";
-// import GuestRoute from "../guards/GuestRoute";
-import ProtectedRoute from "../guards/ProtectedRoute";
+import GuestRoute from "../guards/GuestRoute";
+// import ProtectedRoute from "../guards/ProtectedRoute";
 
 import { dashboardRoutes } from "./dashboard.routes";
 import { documentationRoutes } from "./documentation.routes";
@@ -18,7 +18,7 @@ import { menusRoutes } from "./menus.routes";
 import { visitorsRoutes } from "./visitors.routes";
 
 export const privateRoutes = {
-  element: <ProtectedRoute />,
+  element: <GuestRoute />,
   children: [
     {
       path: "/",

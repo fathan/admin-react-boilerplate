@@ -1,12 +1,13 @@
 import React from "react";
 import { Controller, Control } from "react-hook-form";
-import { Input } from "@chakra-ui/react";
+import { Button, Input, NativeSelect  } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import type { ReactDatePickerCustomHeaderProps } from "react-datepicker";
 import { range } from "lodash";
 import { getYear, getMonth } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface BaseDatePickerProps {
   name: string;
@@ -50,43 +51,44 @@ const CustomHeader = ({
   prevMonthButtonDisabled,
   nextMonthButtonDisabled,
 }: ReactDatePickerCustomHeaderProps) => (
-  <div
-    style={{
-      margin: 10,
-      display: "flex",
-      justifyContent: "center",
-    }}
-  >
-    <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-      {"<"}
-    </button>
-    <select
-      value={getYear(date)}
-      onChange={({ target: { value } }) => changeYear(+value)}
-    >
-      {years.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+  <div className="m-2 flex gap-2 justify-between">
+    <Button variant={'plain'} size={'sm'} onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+      <ChevronLeft />
+    </Button>
 
-    <select
-      value={MONTHS[getMonth(date)]}
-      onChange={({ target: { value } }) =>
-        changeMonth(MONTHS.indexOf(value as (typeof MONTHS)[number]))
-      }
-    >
-      {MONTHS.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+    <NativeSelect.Root>
+      <NativeSelect.Field
+        value={String(getYear(date))}
+        onChange={({ target: { value } }) => changeYear(Number(value))}
+        className="bg-white"
+      >
+        {years.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </NativeSelect.Field>
+    </NativeSelect.Root>
 
-    <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-      {">"}
-    </button>
+     <NativeSelect.Root>
+      <NativeSelect.Field
+        value={MONTHS[getMonth(date)]}
+        onChange={({ target: { value } }) =>
+          changeMonth(MONTHS.indexOf(value as (typeof MONTHS)[number]))
+        }
+        className="bg-white"
+      >
+        {MONTHS.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </NativeSelect.Field>
+    </NativeSelect.Root>
+
+    <Button variant={'plain'} size={'sm'} onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+      <ChevronRight />
+    </Button>
   </div>
 );
 

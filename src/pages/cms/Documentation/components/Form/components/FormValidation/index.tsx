@@ -333,8 +333,6 @@ export default function DocFormValidation() {
             <BaseDatePicker
               name="birthdate"
               control={control}
-              minDate={new Date(1900, 0, 1)}
-              maxDate={new Date()}
               dateFormat="dd/MM/yyyy"
               error={errors.birthdate?.message}
             />
